@@ -15,6 +15,7 @@ from .engine import SOURCE_SUFFIXES, dependency_status, ollama_models
 from .jobs import JobManager
 
 WEB_DIR = Path(__file__).resolve().parent / "web"
+ROOT = Path(__file__).resolve().parents[1]
 JOB_PATH = re.compile(r"^/api/jobs/([0-9a-f]{6,32})(?:/(test|cancel|summary))?$")
 
 
@@ -57,6 +58,8 @@ class Handler(BaseHTTPRequestHandler):
             return self._models(query)
         if route == "/api/browse":
             return self._browse(query)
+        if route == "/api/demo":
+            return self._demo()
         if route == "/api/jobs":
             return self._json({"jobs": self.manager.list()})
         match = JOB_PATH.match(route)
@@ -87,6 +90,15 @@ class Handler(BaseHTTPRequestHandler):
             "ollama_base_url": self.settings.ollama_base_url,
             "runs_dir": str(self.settings.runs_dir),
         })
+
+    def _demo(self) -> None:
+        """返回仓库内置的脱敏示例运行，供没有模型的环境查看结果形态。"""
+        from .engine import load_demo
+
+        try:
+            self._json(load_demo(ROOT))
+        except FileNotFoundError as exc:
+            self._error(str(exc), HTTPStatus.NOT_FOUND)
 
     def _models(self, query: dict[str, list[str]]) -> None:
         base_url = (query.get("base_url") or [self.settings.ollama_base_url])[0]

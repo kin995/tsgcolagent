@@ -1,0 +1,42 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  # 一次性任务：把演示用的小模型拉下来（默认 7B，显存不足可换 1.5b）
+  model-pull:
+    image: ollama/ollama:latest
+    depends_on:
+      - ollama
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+      DEMO_MODEL: ${DEMO_MODEL:-qwen2.5-coder:7b}
+    entrypoint: ["/bin/sh", "-c", "sleep 5 && ollama pull $${DEMO_MODEL}"]
+    restart: "no"
+
+  app:
+    build:
+      context: .
+      args:
+        WITH_JAVA: ${WITH_JAVA:-0}
+    ports:
+      - "8770:8770"
+    environment:
+      TSGTEST_OLLAMA_BASE_URL: http://ollama:11434
+      TSGTEST_MODEL: ${DEMO_MODEL:-qwen2.5-coder:7b}
+    depends_on:
+      - ollama
+    volumes:
+      - runs:/app/tsgtest_runs
+
+volumes:
+  ollama:
+  runs:

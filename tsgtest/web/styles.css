@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --bg: #f4f6f8;
   --panel: #ffffff;
   --line: #e3e8ee;
@@ -196,3 +196,6 @@ button:disabled { opacity: .55; cursor: not-allowed; }
 .browse-list li { padding: 7px 8px; border-radius: 8px; cursor: pointer; display: flex; justify-content: space-between; gap: 10px; font-size: 13px; }
 .browse-list li:hover { background: #f3f6fa; }
 .browse-list .tag { color: var(--muted); font-size: 11px; }
+
+.demo-btn { width: 100%; margin-top: 8px; }
+

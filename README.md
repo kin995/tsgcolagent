@@ -43,6 +43,17 @@ ollama serve
 ollama pull deepseek-r1:14b
 ```
 
+### 1'. Docker 一键启动（评审推荐）
+
+```bash
+# 默认拉取 qwen2.5-coder:7b（约 4.7 GB）；显存紧张可换 1.5b
+DEMO_MODEL=qwen2.5-coder:7b docker compose up -d
+# 需要跑 Java 任务时带上 JDK + Maven：
+WITH_JAVA=1 docker compose up -d --build
+```
+
+打开 `http://127.0.0.1:8770`。首次启动时 `model-pull` 会下载模型，`docker compose logs -f model-pull` 可看进度。
+
 ### 2. 启动工作台
 
 ```bash
@@ -51,6 +62,8 @@ python -m tsgtest serve --port 8770 --open
 
 浏览器打开 `http://127.0.0.1:8770`：选择源文件/目录 → 选模型 → 开始生成，
 右侧实时显示执行日志、覆盖率、变异得分与生成的测试代码。
+
+> 没有模型也能看：点界面上的「查看示例运行（无需模型）」，会加载仓库内置的脱敏运行结果。
 
 也可以直接用命令行：
 

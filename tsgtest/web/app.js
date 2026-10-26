@@ -42,6 +42,7 @@
 
   function bind() {
     $("start-btn").addEventListener("click", start);
+    $("demo-btn").addEventListener("click", loadDemo);
     $("refresh-models").addEventListener("click", loadModels);
     $("browse-btn").addEventListener("click", () => openBrowse($("source").value.trim() || null));
     $("browse-close").addEventListener("click", () => $("browse-modal").hidden = true);
@@ -237,6 +238,25 @@
     link.download = name;
     link.click();
     setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+  }
+
+  // ---------- 离线示例 ----------
+  async function loadDemo() {
+    try {
+      const data = await fetchJSON("/api/demo");
+      state.items = data.items || [];
+      state.active = 0;
+      const badge = $("job-status");
+      badge.textContent = "示例运行";
+      badge.className = "badge done";
+      $("job-meta").textContent = "内置示例（已脱敏）：" + ((state.items[0] || {}).source || "");
+      $("job-log").textContent = "离线示例：展示真实运行产出的指标与测试代码，不需要 Ollama。";
+      renderResult(data);
+    } catch (err) {
+      const error = $("form-error");
+      error.textContent = "示例加载失败：" + err.message;
+      error.hidden = false;
+    }
   }
 
   // ---------- 历史 ----------

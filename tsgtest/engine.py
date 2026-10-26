@@ -190,3 +190,18 @@ def write_job_record(out_dir: Path, payload: dict[str, object]) -> None:
         )
     except OSError:
         pass
+
+
+def load_demo(root: Path) -> dict[str, object]:
+    """读取仓库内置示例运行（已脱敏），不需要模型与依赖。"""
+    report = root / "demo" / "report"
+    summary_path = report / "stateflow_summary.json"
+    if not summary_path.is_file():
+        raise FileNotFoundError(f"缺少示例运行：{summary_path}")
+    summary = json.loads(summary_path.read_text(encoding="utf-8"))
+    item = summarize(summary, Path(str(summary.get("source") or "demo/source.py")), report)
+    demo_test = report / "test_source_stateflow.py"
+    if not item.get("test_text") and demo_test.is_file():
+        item["test_text"] = demo_test.read_text(encoding="utf-8", errors="replace")
+    item["demo"] = True
+    return {"kind": "single", "items": [item], "demo": True}

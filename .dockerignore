@@ -1,0 +1,12 @@
+.git
+.gitignore
+.github
+__pycache__
+*.pyc
+.pytest_cache
+tsgtest_runs
+.tsgtest_test
+frontend/node_modules
+java_workspace/.m2
+demo/report/.langgraph
+*.log
