@@ -1,0 +1,476 @@
+{
+  "records": [
+    {
+      "experience_id": "09c3fbf1f88ce3acd3404e1c",
+      "timestamp": 1788237841.6962066,
+      "source": "<WORKSPACE>\\datasets\\HumanEvalJava\\ADD.java",
+      "model": "deepseek-r1:14b",
+      "project_version": "pteg-agent-v2",
+      "prompt_version": "test-plan-v2",
+      "schema_version": "test-plan-schema-v1",
+      "task_signature": {
+        "node_count": 8,
+        "function_count": 1,
+        "branch_count": 0,
+        "loop_count": 0,
+        "exception_count": 0,
+        "mutation_survivor_count": 0,
+        "language": "java",
+        "argument_types": [
+          "int"
+        ],
+        "operators": [],
+        "state_types": [
+          "Class",
+          "End",
+          "Function",
+          "Package",
+          "Parameter",
+          "Return",
+          "ReturnType"
+        ],
+        "target_terms": [
+          "add"
+        ],
+        "complexity": "low"
+      },
+      "target_evidence_ids": [],
+      "input_partition": "negative",
+      "boundary_operator": null,
+      "oracle_kind": "unknown",
+      "candidate_status": "rejected",
+      "failure_category": null,
+      "agent": "ExecutionAgent/TestGenerationAgent",
+      "action": "generate_test_plan",
+      "candidate_hash": "cfc5a7957557e6c1",
+      "strategy_fingerprint": "6309bb75c41ac6fd",
+      "accepted": false,
+      "pytest_passed": false,
+      "before_metrics": {},
+      "after_metrics": {},
+      "quality_delta": {
+        "sfc": 0.0,
+        "ae": 0.0,
+        "mutation": 0.0
+      },
+      "delta_sfc": 0.0,
+      "delta_ae": 0.0,
+      "delta_mutation": 0.0,
+      "runtime_seconds": 0.0,
+      "llm_calls": 0,
+      "reward": -0.7,
+      "rejection_reason": "pending_compile_and_intent_validation",
+      "learning_notes": [
+        {
+          "lesson_type": "failure",
+          "reason_type": "pending_compile_and_intent_validation",
+          "cause": "The previous attempt failed or was rejected.",
+          "solution": "Generate conservative executable tests with clear oracles, then optimize only the reported weak dimension.",
+          "reminder": "Reason: pending_compile_and_intent_validation. Cause: The previous attempt failed or was rejected. Solution: Generate conservative executable tests with clear oracles, then optimize only the reported weak dimension.",
+          "evidence": {
+            "agent": "ExecutionAgent/TestGenerationAgent",
+            "action": "generate_test_plan",
+            "oracle_kind": "unknown",
+            "input_partition": "negative",
+            "rejection_reason": "pending_compile_and_intent_validation"
+          }
+        }
+      ],
+      "prompt_reminders": [
+        "Reason: pending_compile_and_intent_validation. Cause: The previous attempt failed or was rejected. Solution: Generate conservative executable tests with clear oracles, then optimize only the reported weak dimension."
+      ]
+    },
+    {
+      "timestamp": 1788237867.5432687,
+      "source": "<WORKSPACE>\\datasets\\HumanEvalJava\\ADD.java",
+      "model": "deepseek-r1:14b",
+      "project_version": "pteg-agent-v3",
+      "prompt_version": "unknown",
+      "schema_version": "unknown",
+      "agent": "CoverageAgent",
+      "dominant_gap": "coverage",
+      "gaps": {
+        "coverage": 0.8,
+        "mutation": 0.0,
+        "assertion": 0.0,
+        "exception": 0.0,
+        "runtime_type": 0.0
+      },
+      "task_features": {
+        "node_count": 42,
+        "function_count": 1,
+        "branch_count": 0,
+        "loop_count": 0,
+        "exception_count": 0,
+        "mutation_survivor_count": 0
+      },
+      "task_signature": {
+        "node_count": 42,
+        "function_count": 1,
+        "branch_count": 0,
+        "loop_count": 0,
+        "exception_count": 0,
+        "mutation_survivor_count": 0,
+        "language": "java",
+        "argument_types": [
+          "int"
+        ],
+        "operators": [],
+        "state_types": [
+          "Assertion",
+          "Class",
+          "End",
+          "Execution",
+          "Function",
+          "Mutation",
+          "Package",
+          "Parameter",
+          "Return",
+          "ReturnType",
+          "RuntimeState",
+          "RuntimeType",
+          "TestCase"
+        ],
+        "target_terms": [
+          "add"
+        ],
+        "complexity": "medium"
+      },
+      "before": {
+        "pytest_passed": true,
+        "coverage_percent": 0.5,
+        "line_coverage": 0.5,
+        "branch_coverage": 0.0,
+        "combined_coverage": 0.5,
+        "mutation_score": null,
+        "sfc": 0.6625,
+        "ae": 0.9,
+        "sfq": 0.8484,
+        "tsq": 0.8484,
+        "pv": 1.0,
+        "nrr": 1.0,
+        "test_path": "<WORKSPACE>\\.test_tmp\\deep_audit_add\\ADDTest.java",
+        "failure_category": "valid_baseline",
+        "failed_tests": [],
+        "coverage_valid": true,
+        "mutation_valid": false,
+        "quality_status": "valid_usable",
+        "next_allowed_agents": [],
+        "collected_count": 3,
+        "timed_out": false,
+        "effective_mutants": 0,
+        "mutation_reliability": "unavailable",
+        "weak_assertions_only": false,
+        "exception_only": false,
+        "normal_behavior_tests": 3,
+        "assertion_count": 3,
+        "weak_assertions": 0,
+        "effective_assertions": 3,
+        "assertion_quality_explanation": "共 3 个断言，均为有效断言",
+        "sfc_components": {
+          "node_coverage": 0.75,
+          "edge_coverage": 0.5,
+          "path_coverage": 0.75,
+          "program_nodes": 4,
+          "visited_program_nodes": 3,
+          "program_edges": 4,
+          "visited_program_edges": 2,
+          "branch_like_nodes": 0,
+          "visited_branch_like_nodes": 0
+        },
+        "timeout_kind": null,
+        "timeout_reason": null,
+        "timeout_likely_location": null,
+        "timeout_should_repair": true,
+        "weak_quality_flags": [
+          "mutation_unavailable",
+          "weak_branch_coverage",
+          "weak_line_coverage"
+        ],
+        "threshold_failures": {
+          "line_coverage_gap": 0.3,
+          "branch_coverage_gap": 0.7
+        },
+        "failure_location": null,
+        "repair_failure_reason": null,
+        "evaluation_profile": "screening",
+        "mutation_complete": false,
+        "cache_hit": false,
+        "mutation_evidence": {
+          "valid": false,
+          "skipped": true,
+          "skipped_reason": "deferred_until_final_candidate",
+          "evaluation_profile": "screening",
+          "final_evaluation": false,
+          "score": null,
+          "mutation_score": null,
+          "effective_mutants": 0,
+          "score_reliability": "unavailable",
+          "evidence_source": "pit"
+        },
+        "quality_assessment": {
+          "status": "valid_usable",
+          "feasible": true,
+          "objective": "under executable test intent, maximize useful quality while controlling unnecessary test and iteration cost",
+          "dimensions": {
+            "coverage": {
+              "available": true,
+              "acceptable": false,
+              "high": false,
+              "line": 0.5,
+              "branch": 0.0,
+              "sfc": 0.6625
+            },
+            "assertion": {
+              "available": true,
+              "acceptable": true,
+              "high": true,
+              "ae": 0.9,
+              "effective_assertions": 3
+            },
+            "mutation": {
+              "available": false,
+              "acceptable": false,
+              "high": false,
+              "score": null,
+              "effective_mutants": 0,
+              "reliability": "unavailable"
+            }
+          },
+          "evidence_confidence": 0.6667,
+          "assertion_signal_ratio": 1.0,
+          "acceptable_dimension_count": 1,
+          "high_dimension_count": 1,
+          "critical_weaknesses": [],
+          "rationale": [
+            "测试可编译/运行，包含正常行为和有效断言",
+            "1个可用核心质量维度达到可接受标准",
+            "可靠变异样本不足，等级不声称具有高变异检测证据"
+          ]
+        }
+      },
+      "after": {
+        "pytest_passed": true,
+        "coverage_percent": 0.5,
+        "line_coverage": 0.5,
+        "branch_coverage": 0.0,
+        "combined_coverage": 0.5,
+        "mutation_score": 1.0,
+        "sfc": 0.6625,
+        "ae": 0.9,
+        "sfq": 0.8484,
+        "tsq": 0.8484,
+        "pv": 1.0,
+        "nrr": 1.0,
+        "test_path": "<WORKSPACE>\\.test_tmp\\deep_audit_add\\ADDTest.java",
+        "failure_category": "valid_baseline",
+        "failed_tests": [],
+        "coverage_valid": true,
+        "mutation_valid": true,
+        "quality_status": "valid_usable",
+        "next_allowed_agents": [],
+        "collected_count": 3,
+        "timed_out": false,
+        "effective_mutants": 2,
+        "mutation_reliability": "low",
+        "weak_assertions_only": false,
+        "exception_only": false,
+        "normal_behavior_tests": 3,
+        "assertion_count": 3,
+        "weak_assertions": 0,
+        "effective_assertions": 3,
+        "assertion_quality_explanation": "共 3 个断言，均为有效断言",
+        "sfc_components": {
+          "node_coverage": 0.75,
+          "edge_coverage": 0.5,
+          "path_coverage": 0.75,
+          "program_nodes": 4,
+          "visited_program_nodes": 3,
+          "program_edges": 4,
+          "visited_program_edges": 2,
+          "branch_like_nodes": 0,
+          "visited_branch_like_nodes": 0
+        },
+        "timeout_kind": null,
+        "timeout_reason": null,
+        "timeout_likely_location": null,
+        "timeout_should_repair": true,
+        "weak_quality_flags": [
+          "mutation_evidence_limited",
+          "weak_branch_coverage",
+          "weak_line_coverage"
+        ],
+        "threshold_failures": {
+          "line_coverage_gap": 0.3,
+          "branch_coverage_gap": 0.7
+        },
+        "failure_location": null,
+        "repair_failure_reason": null,
+        "evaluation_profile": "full",
+        "mutation_complete": true,
+        "cache_hit": false,
+        "mutation_evidence": {
+          "valid": true,
+          "total": 2,
+          "killed": 2,
+          "survived": 0,
+          "timeout": 0,
+          "invalid": 0,
+          "infra_error": 0,
+          "no_coverage": 0,
+          "killed_lines": [
+            5,
+            5
+          ],
+          "survived_lines": [],
+          "timeout_lines": [],
+          "invalid_lines": [],
+          "infra_error_lines": [],
+          "no_coverage_lines": [],
+          "candidate_count": 2,
+          "attempted_mutants": 2,
+          "low_sample_reason": "effective mutants fewer than 3 (2)",
+          "autonomy_action": "plan boundary and branch-distinguishing assertions",
+          "xml_path": "<WORKSPACE>\\java_workspace\\target\\pit-reports\\mutations.xml",
+          "target_class": "humaneval.correct.ADD",
+          "test_selector": "ADDTest",
+          "evaluation_profile": "full",
+          "final_evaluation": true,
+          "score": 1.0,
+          "mutation_score": 1.0,
+          "effective_mutants": 2,
+          "score_reliability": "low",
+          "evidence_source": "pit"
+        },
+        "quality_assessment": {
+          "status": "valid_usable",
+          "feasible": true,
+          "objective": "under executable test intent, maximize useful quality while controlling unnecessary test and iteration cost",
+          "dimensions": {
+            "coverage": {
+              "available": true,
+              "acceptable": false,
+              "high": false,
+              "line": 0.5,
+              "branch": 0.0,
+              "sfc": 0.6625
+            },
+            "assertion": {
+              "available": true,
+              "acceptable": true,
+              "high": true,
+              "ae": 0.9,
+              "effective_assertions": 3
+            },
+            "mutation": {
+              "available": false,
+              "acceptable": false,
+              "high": false,
+              "score": 1.0,
+              "effective_mutants": 2,
+              "reliability": "low"
+            }
+          },
+          "evidence_confidence": 0.6667,
+          "assertion_signal_ratio": 1.0,
+          "acceptable_dimension_count": 1,
+          "high_dimension_count": 1,
+          "critical_weaknesses": [],
+          "rationale": [
+            "测试可编译/运行，包含正常行为和有效断言",
+            "1个可用核心质量维度达到可接受标准",
+            "可靠变异样本不足，等级不声称具有高变异检测证据"
+          ]
+        }
+      },
+      "delta_sfq": 0.0,
+      "runtime_seconds": 0.0,
+      "llm_calls": 0,
+      "token_count": 0,
+      "expected_reward": 0.015,
+      "actual_reward": 0.3,
+      "reward_prediction_error": 0.285,
+      "outcome": "positive",
+      "reward": 0.3,
+      "learning_notes": [
+        {
+          "lesson_type": "optimization",
+          "reason_type": "mutation_evidence_limited",
+          "cause": "The runnable test suite is usable but still below a quality target.",
+          "solution": "Optimize only the weak dimension reported by evaluation and keep passing tests unchanged.",
+          "reminder": "Reason: mutation_evidence_limited. Cause: The runnable test suite is usable but still below a quality target. Solution: Optimize only the weak dimension reported by evaluation and keep passing tests unchanged.",
+          "evidence": {
+            "source": "<WORKSPACE>\\datasets\\HumanEvalJava\\ADD.java",
+            "quality_status": "valid_usable"
+          }
+        },
+        {
+          "lesson_type": "optimization",
+          "reason_type": "weak_branch_coverage",
+          "cause": "Branch alternatives are not distinguished by tests.",
+          "solution": "Add paired inputs that force true and false branch outcomes.",
+          "reminder": "Reason: weak_branch_coverage. Cause: Branch alternatives are not distinguished by tests. Solution: Add paired inputs that force true and false branch outcomes.",
+          "evidence": {
+            "source": "<WORKSPACE>\\datasets\\HumanEvalJava\\ADD.java",
+            "quality_status": "valid_usable"
+          }
+        },
+        {
+          "lesson_type": "optimization",
+          "reason_type": "weak_line_coverage",
+          "cause": "Too many executable source lines remain uncovered.",
+          "solution": "Target uncovered methods and returns with small concrete examples.",
+          "reminder": "Reason: weak_line_coverage. Cause: Too many executable source lines remain uncovered. Solution: Target uncovered methods and returns with small concrete examples.",
+          "evidence": {
+            "source": "<WORKSPACE>\\datasets\\HumanEvalJava\\ADD.java",
+            "quality_status": "valid_usable"
+          }
+        },
+        {
+          "lesson_type": "optimization",
+          "reason_type": "line_coverage_gap",
+          "cause": "line_coverage_gap remained below the configured target.",
+          "solution": "Target uncovered methods and returns with small concrete examples.",
+          "reminder": "Reason: line_coverage_gap. Cause: line_coverage_gap remained below the configured target. Solution: Target uncovered methods and returns with small concrete examples.",
+          "evidence": {
+            "gap": 0.3,
+            "source": "<WORKSPACE>\\datasets\\HumanEvalJava\\ADD.java"
+          }
+        },
+        {
+          "lesson_type": "optimization",
+          "reason_type": "branch_coverage_gap",
+          "cause": "branch_coverage_gap remained below the configured target.",
+          "solution": "Add paired inputs that force true and false branch outcomes.",
+          "reminder": "Reason: branch_coverage_gap. Cause: branch_coverage_gap remained below the configured target. Solution: Add paired inputs that force true and false branch outcomes.",
+          "evidence": {
+            "gap": 0.7,
+            "source": "<WORKSPACE>\\datasets\\HumanEvalJava\\ADD.java"
+          }
+        },
+        {
+          "lesson_type": "success",
+          "reason_type": "optimization_gain",
+          "cause": "The selected optimization improved the quality score.",
+          "solution": "Reuse this focus for similar tasks when the same gap is dominant.",
+          "reminder": "Reason: optimization_gain. Cause: The selected optimization improved the quality score. Solution: Reuse this focus for similar tasks when the same gap is dominant.",
+          "evidence": {
+            "agent": "CoverageAgent",
+            "dominant_gap": "coverage",
+            "delta_sfc": 0.0,
+            "delta_ae": 0.0,
+            "delta_mutation": 1.0
+          }
+        }
+      ],
+      "prompt_reminders": [
+        "Reason: mutation_evidence_limited. Cause: The runnable test suite is usable but still below a quality target. Solution: Optimize only the weak dimension reported by evaluation and keep passing tests unchanged.",
+        "Reason: weak_branch_coverage. Cause: Branch alternatives are not distinguished by tests. Solution: Add paired inputs that force true and false branch outcomes.",
+        "Reason: weak_line_coverage. Cause: Too many executable source lines remain uncovered. Solution: Target uncovered methods and returns with small concrete examples.",
+        "Reason: line_coverage_gap. Cause: line_coverage_gap remained below the configured target. Solution: Target uncovered methods and returns with small concrete examples.",
+        "Reason: branch_coverage_gap. Cause: branch_coverage_gap remained below the configured target. Solution: Add paired inputs that force true and false branch outcomes.",
+        "Reason: optimization_gain. Cause: The selected optimization improved the quality score. Solution: Reuse this focus for similar tasks when the same gap is dominant."
+      ]
+    }
+  ]
+}

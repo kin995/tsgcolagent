@@ -1,0 +1,44 @@
+[project]
+name = "my-mutil-agent"
+version = "0.1.0"
+description = "LangGraph-based multi-agent unit test generation system guided by a shared Test State Guidance mechanism."
+requires-python = ">=3.11"
+dependencies = [
+    "pytest>=8.0",
+    "coverage>=7.0",
+    "sortedcontainers>=2.4,<3.0",
+    "langgraph>=1.0,<2.0",
+    "langgraph-checkpoint-sqlite>=3.0,<4.0",
+    "tree-sitter>=0.25,<0.26",
+    "tree-sitter-java>=0.23,<0.24",
+    "ollama>=0.4,<1.0",
+]
+
+[project.scripts]
+tsgtest = "tsgtest.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.setuptools.packages.find]
+include = [
+    "agents*",
+    "analysis*",
+    "core*",
+    "executor*",
+    "graph*",
+    "memory*",
+    "metrics*",
+    "monitoring*",
+    "orchestration*",
+    "repair*",
+    "tsgtest*",
+    "validation*",
+    "visualization*",
+]
+exclude = [
+    "datasets*",
+    "examples*",
+    "tests*",
+]

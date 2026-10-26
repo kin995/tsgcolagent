@@ -1,0 +1,429 @@
+{
+  "records": [
+    {
+      "experience_id": "8a8e98d1a89405eb0006ffe0",
+      "timestamp": 1787736401.825678,
+      "source": "<OLD_ROOT>\\My_Mutil_Agent\\examples\\sample_java\\SimpleCalculator.java",
+      "model": "deepseek-r1:14b",
+      "project_version": "pteg-agent-v2",
+      "prompt_version": "test-plan-v2",
+      "schema_version": "test-plan-schema-v1",
+      "task_signature": {
+        "node_count": 29,
+        "function_count": 3,
+        "branch_count": 4,
+        "loop_count": 0,
+        "exception_count": 0,
+        "mutation_survivor_count": 0,
+        "language": "java",
+        "argument_types": [
+          "int"
+        ],
+        "operators": [
+          "<",
+          "==",
+          ">"
+        ],
+        "state_types": [
+          "Branch",
+          "Call",
+          "Class",
+          "End",
+          "Function",
+          "Package",
+          "Parameter",
+          "Return",
+          "ReturnType",
+          "Throw"
+        ],
+        "target_terms": [
+          "(divisor == 0)",
+          "(minimum > maximum)",
+          "(value < minimum)",
+          "(value > maximum)",
+          "add",
+          "clamp",
+          "divide",
+          "throw new ArithmeticException(\"division by zero\");",
+          "throw new IllegalArgumentException(\"minimum must not exceed maximum\");"
+        ],
+        "complexity": "medium"
+      },
+      "target_evidence_ids": [],
+      "input_partition": "negative",
+      "boundary_operator": ">",
+      "oracle_kind": "unknown",
+      "candidate_status": "rejected",
+      "failure_category": null,
+      "agent": "ExecutionAgent/TestGenerationAgent",
+      "action": "generate_test_plan",
+      "candidate_hash": "1306976c1140aed7",
+      "strategy_fingerprint": "6309bb75c41ac6fd",
+      "accepted": false,
+      "pytest_passed": false,
+      "before_metrics": {},
+      "after_metrics": {},
+      "quality_delta": {
+        "sfc": 0.0,
+        "ae": 0.0,
+        "mutation": 0.0
+      },
+      "delta_sfc": 0.0,
+      "delta_ae": 0.0,
+      "delta_mutation": 0.0,
+      "runtime_seconds": 0.0,
+      "llm_calls": 0,
+      "reward": -0.7,
+      "rejection_reason": "pending_compile_and_intent_validation",
+      "learning_notes": [
+        {
+          "lesson_type": "failure",
+          "reason_type": "pending_compile_and_intent_validation",
+          "cause": "The previous attempt failed or was rejected.",
+          "solution": "Generate conservative executable tests with clear oracles, then optimize only the reported weak dimension.",
+          "reminder": "Reason: pending_compile_and_intent_validation. Cause: The previous attempt failed or was rejected. Solution: Generate conservative executable tests with clear oracles, then optimize only the reported weak dimension.",
+          "evidence": {
+            "agent": "ExecutionAgent/TestGenerationAgent",
+            "action": "generate_test_plan",
+            "oracle_kind": "unknown",
+            "input_partition": "negative",
+            "rejection_reason": "pending_compile_and_intent_validation"
+          }
+        }
+      ],
+      "prompt_reminders": [
+        "Reason: pending_compile_and_intent_validation. Cause: The previous attempt failed or was rejected. Solution: Generate conservative executable tests with clear oracles, then optimize only the reported weak dimension."
+      ]
+    },
+    {
+      "timestamp": 1787736419.3486028,
+      "source": "<OLD_ROOT>\\My_Mutil_Agent\\examples\\sample_java\\SimpleCalculator.java",
+      "model": "deepseek-r1:14b",
+      "project_version": "pteg-agent-v3",
+      "prompt_version": "unknown",
+      "schema_version": "unknown",
+      "agent": "Stop",
+      "dominant_gap": "coverage",
+      "gaps": {
+        "coverage": 0.0,
+        "mutation": 0.0,
+        "assertion": 0.0,
+        "exception": 0.0,
+        "runtime_type": 0.0
+      },
+      "task_features": {
+        "node_count": 139,
+        "function_count": 3,
+        "branch_count": 4,
+        "loop_count": 0,
+        "exception_count": 0,
+        "mutation_survivor_count": 0
+      },
+      "task_signature": {
+        "node_count": 139,
+        "function_count": 3,
+        "branch_count": 4,
+        "loop_count": 0,
+        "exception_count": 0,
+        "mutation_survivor_count": 0,
+        "language": "java",
+        "argument_types": [
+          "int"
+        ],
+        "operators": [
+          "<",
+          "==",
+          ">"
+        ],
+        "state_types": [
+          "Assertion",
+          "Branch",
+          "Call",
+          "Class",
+          "End",
+          "Execution",
+          "Function",
+          "Package",
+          "Parameter",
+          "Return",
+          "ReturnType",
+          "RuntimeState",
+          "RuntimeType",
+          "TestCase",
+          "Throw"
+        ],
+        "target_terms": [
+          "(divisor == 0)",
+          "(minimum > maximum)",
+          "(value < minimum)",
+          "(value > maximum)",
+          "add",
+          "clamp",
+          "divide",
+          "throw new ArithmeticException(\"division by zero\");",
+          "throw new IllegalArgumentException(\"minimum must not exceed maximum\");"
+        ],
+        "complexity": "high"
+      },
+      "before": {
+        "pytest_passed": true,
+        "coverage_percent": 1.0,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "combined_coverage": 1.0,
+        "mutation_score": null,
+        "sfc": 1.0,
+        "ae": 0.9275,
+        "sfq": 0.9819,
+        "tsq": 0.9819,
+        "pv": 1.0,
+        "nrr": 1.0,
+        "test_path": "<HOME>\\AppData\\Local\\Temp\\tsg_global_audit_java_aeaf4eeebba3463984eaea30d7ed65df\\SimpleCalculatorTest.java",
+        "failure_category": "valid_baseline",
+        "failed_tests": [],
+        "coverage_valid": true,
+        "mutation_valid": false,
+        "quality_status": "quality_high",
+        "next_allowed_agents": [],
+        "collected_count": 10,
+        "timed_out": false,
+        "effective_mutants": 0,
+        "mutation_reliability": "unavailable",
+        "weak_assertions_only": false,
+        "exception_only": false,
+        "normal_behavior_tests": 10,
+        "assertion_count": 10,
+        "weak_assertions": 0,
+        "effective_assertions": 10,
+        "assertion_quality_explanation": "共 10 个断言，均为有效断言",
+        "sfc_components": {
+          "node_coverage": 0.8333333333333334,
+          "edge_coverage": 0.4,
+          "path_coverage": 1.0,
+          "program_nodes": 18,
+          "visited_program_nodes": 15,
+          "program_edges": 20,
+          "visited_program_edges": 8,
+          "branch_like_nodes": 4,
+          "visited_branch_like_nodes": 4
+        },
+        "timeout_kind": null,
+        "timeout_reason": null,
+        "timeout_likely_location": null,
+        "timeout_should_repair": true,
+        "weak_quality_flags": [
+          "mutation_unavailable"
+        ],
+        "threshold_failures": {},
+        "failure_location": null,
+        "repair_failure_reason": null,
+        "evaluation_profile": "screening",
+        "mutation_complete": false,
+        "cache_hit": false,
+        "mutation_evidence": {
+          "valid": false,
+          "skipped": true,
+          "skipped_reason": "deferred_until_final_candidate",
+          "evaluation_profile": "screening",
+          "final_evaluation": false,
+          "score": null,
+          "mutation_score": null,
+          "effective_mutants": 0,
+          "score_reliability": "unavailable",
+          "evidence_source": "pit"
+        },
+        "quality_assessment": {
+          "status": "quality_high",
+          "feasible": true,
+          "objective": "under executable test intent, maximize useful quality while controlling unnecessary test and iteration cost",
+          "dimensions": {
+            "coverage": {
+              "available": true,
+              "acceptable": true,
+              "high": true,
+              "line": 1.0,
+              "branch": 1.0,
+              "sfc": 1.0
+            },
+            "assertion": {
+              "available": true,
+              "acceptable": true,
+              "high": true,
+              "ae": 0.9275,
+              "effective_assertions": 10
+            },
+            "mutation": {
+              "available": false,
+              "acceptable": false,
+              "high": false,
+              "score": null,
+              "effective_mutants": 0,
+              "reliability": "unavailable"
+            }
+          },
+          "evidence_confidence": 0.6667,
+          "assertion_signal_ratio": 1.0,
+          "acceptable_dimension_count": 2,
+          "high_dimension_count": 2,
+          "critical_weaknesses": [],
+          "rationale": [
+            "测试可编译/运行，包含正常行为和有效断言",
+            "2个可用核心质量维度达到可接受标准",
+            "可靠变异样本不足，等级不声称具有高变异检测证据"
+          ]
+        }
+      },
+      "after": {
+        "pytest_passed": true,
+        "coverage_percent": 1.0,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "combined_coverage": 1.0,
+        "mutation_score": null,
+        "sfc": 1.0,
+        "ae": 0.9275,
+        "sfq": 0.9819,
+        "tsq": 0.9819,
+        "pv": 1.0,
+        "nrr": 1.0,
+        "test_path": "<HOME>\\AppData\\Local\\Temp\\tsg_global_audit_java_aeaf4eeebba3463984eaea30d7ed65df\\SimpleCalculatorTest.java",
+        "failure_category": "valid_baseline",
+        "failed_tests": [],
+        "coverage_valid": true,
+        "mutation_valid": false,
+        "quality_status": "quality_high",
+        "next_allowed_agents": [],
+        "collected_count": 10,
+        "timed_out": false,
+        "effective_mutants": 0,
+        "mutation_reliability": "unavailable",
+        "weak_assertions_only": false,
+        "exception_only": false,
+        "normal_behavior_tests": 10,
+        "assertion_count": 10,
+        "weak_assertions": 0,
+        "effective_assertions": 10,
+        "assertion_quality_explanation": "共 10 个断言，均为有效断言",
+        "sfc_components": {
+          "node_coverage": 0.8333333333333334,
+          "edge_coverage": 0.4,
+          "path_coverage": 1.0,
+          "program_nodes": 18,
+          "visited_program_nodes": 15,
+          "program_edges": 20,
+          "visited_program_edges": 8,
+          "branch_like_nodes": 4,
+          "visited_branch_like_nodes": 4
+        },
+        "timeout_kind": null,
+        "timeout_reason": null,
+        "timeout_likely_location": null,
+        "timeout_should_repair": true,
+        "weak_quality_flags": [
+          "mutation_unavailable"
+        ],
+        "threshold_failures": {},
+        "failure_location": null,
+        "repair_failure_reason": null,
+        "evaluation_profile": "full",
+        "mutation_complete": true,
+        "cache_hit": false,
+        "mutation_evidence": {
+          "valid": false,
+          "target_class": "sample.SimpleCalculator",
+          "test_selector": "SimpleCalculatorTest",
+          "evaluation_profile": "full",
+          "final_evaluation": true,
+          "score": null,
+          "mutation_score": null,
+          "effective_mutants": 0,
+          "score_reliability": "unavailable",
+          "evidence_source": "pit"
+        },
+        "quality_assessment": {
+          "status": "quality_high",
+          "feasible": true,
+          "objective": "under executable test intent, maximize useful quality while controlling unnecessary test and iteration cost",
+          "dimensions": {
+            "coverage": {
+              "available": true,
+              "acceptable": true,
+              "high": true,
+              "line": 1.0,
+              "branch": 1.0,
+              "sfc": 1.0
+            },
+            "assertion": {
+              "available": true,
+              "acceptable": true,
+              "high": true,
+              "ae": 0.9275,
+              "effective_assertions": 10
+            },
+            "mutation": {
+              "available": false,
+              "acceptable": false,
+              "high": false,
+              "score": null,
+              "effective_mutants": 0,
+              "reliability": "unavailable"
+            }
+          },
+          "evidence_confidence": 0.6667,
+          "assertion_signal_ratio": 1.0,
+          "acceptable_dimension_count": 2,
+          "high_dimension_count": 2,
+          "critical_weaknesses": [],
+          "rationale": [
+            "测试可编译/运行，包含正常行为和有效断言",
+            "2个可用核心质量维度达到可接受标准",
+            "可靠变异样本不足，等级不声称具有高变异检测证据"
+          ]
+        }
+      },
+      "delta_sfq": 0.0,
+      "runtime_seconds": 0.0,
+      "llm_calls": 0,
+      "token_count": 0,
+      "expected_reward": 0.0,
+      "actual_reward": 0.0,
+      "reward_prediction_error": 0.0,
+      "outcome": "no_gain",
+      "reward": 0.0,
+      "learning_notes": [
+        {
+          "lesson_type": "optimization",
+          "reason_type": "mutation_unavailable",
+          "cause": "Mutation testing did not produce a trustworthy score.",
+          "solution": "Keep mutation as an unavailable evidence flag, then rely on coverage and assertion quality without failing the usable suite.",
+          "reminder": "Reason: mutation_unavailable. Cause: Mutation testing did not produce a trustworthy score. Solution: Keep mutation as an unavailable evidence flag, then rely on coverage and assertion quality without failing the usable suite.",
+          "evidence": {
+            "source": "<OLD_ROOT>\\My_Mutil_Agent\\examples\\sample_java\\SimpleCalculator.java",
+            "quality_status": "quality_high"
+          }
+        },
+        {
+          "lesson_type": "optimization",
+          "reason_type": "no_gain_after_optimization",
+          "cause": "The test suite stayed runnable but the selected optimization did not close the main gap.",
+          "solution": "Close this threshold gap with the smallest targeted test addition or assertion repair.",
+          "reminder": "Reason: no_gain_after_optimization. Cause: The test suite stayed runnable but the selected optimization did not close the main gap. Solution: Close this threshold gap with the smallest targeted test addition or assertion repair.",
+          "evidence": {
+            "agent": "Stop",
+            "gaps": {
+              "coverage": 0.0,
+              "mutation": 0.0,
+              "assertion": 0.0,
+              "exception": 0.0,
+              "runtime_type": 0.0
+            }
+          }
+        }
+      ],
+      "prompt_reminders": [
+        "Reason: mutation_unavailable. Cause: Mutation testing did not produce a trustworthy score. Solution: Keep mutation as an unavailable evidence flag, then rely on coverage and assertion quality without failing the usable suite.",
+        "Reason: no_gain_after_optimization. Cause: The test suite stayed runnable but the selected optimization did not close the main gap. Solution: Close this threshold gap with the smallest targeted test addition or assertion repair."
+      ]
+    }
+  ]
+}

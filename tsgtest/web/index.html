@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TSGColAgent · 单元测试生成</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">TSG</div>
+      <div>
+        <h1>TSGColAgent 单元测试生成</h1>
+        <p>共享测试状态引导 · Python / Java · 本地 Ollama</p>
+      </div>
+    </div>
+    <div class="pills">
+      <span class="pill" id="dep-pill" title="引擎依赖">检测中…</span>
+      <span class="pill" id="ollama-pill" title="Ollama 连接">Ollama 检测中…</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel form-panel">
+      <h2>1. 选择目标</h2>
+      <label class="field">
+        <span>源文件或目录</span>
+        <div class="row">
+          <input id="source" type="text" placeholder="C:\project\src\calculator.py 或一个目录" spellcheck="false" />
+          <button id="browse-btn" class="ghost" type="button">浏览…</button>
+        </div>
+        <small>支持单个 .py / .java，或目录（逐个文件处理）</small>
+      </label>
+
+      <h2>2. 模型（Ollama）</h2>
+      <label class="field">
+        <span>模型</span>
+        <div class="row">
+          <select id="model"></select>
+          <button id="refresh-models" class="ghost" type="button">刷新</button>
+        </div>
+      </label>
+      <details class="advanced">
+        <summary>连接与参数</summary>
+        <label class="field">
+          <span>Ollama 地址</span>
+          <input id="base-url" type="text" spellcheck="false" />
+        </label>
+        <div class="grid2">
+          <label class="field">
+            <span>最大轮次</span>
+            <input id="rounds" type="number" min="1" max="5" value="3" />
+          </label>
+          <label class="field">
+            <span>温度</span>
+            <input id="temperature" type="number" min="0" max="2" step="0.1" value="0.5" />
+          </label>
+        </div>
+      </details>
+
+      <button id="start-btn" class="primary" type="button">开始生成</button>
+      <p id="form-error" class="error" hidden></p>
+
+      <h2>历史任务</h2>
+      <ul id="history" class="history"><li class="muted">暂无任务</li></ul>
+    </section>
+
+    <section class="panel result-panel">
+      <div class="result-head">
+        <h2>3. 结果</h2>
+        <span id="job-status" class="badge idle">空闲</span>
+      </div>
+      <p id="job-meta" class="muted"></p>
+
+      <div id="metrics" class="metrics" hidden></div>
+
+      <div id="test-block" hidden>
+        <div class="test-head">
+          <div id="test-tabs" class="tabs"></div>
+          <div class="test-actions">
+            <button id="copy" class="ghost small" type="button">复制</button>
+            <button id="download" class="ghost small" type="button">下载</button>
+          </div>
+        </div>
+        <pre id="test-code" class="code"><code></code></pre>
+      </div>
+
+      <div id="log-block">
+        <h3>运行日志</h3>
+        <pre id="job-log" class="log"></pre>
+      </div>
+    </section>
+  </main>
+
+  <div id="browse-modal" class="modal" hidden>
+    <div class="modal-card">
+      <div class="modal-head">
+        <strong>选择文件</strong>
+        <button id="browse-close" class="ghost small" type="button">关闭</button>
+      </div>
+      <p id="browse-path" class="muted mono"></p>
+      <div class="row">
+        <button id="browse-up" class="ghost small" type="button">上一级</button>
+        <button id="browse-home" class="ghost small" type="button">主目录</button>
+      </div>
+      <ul id="browse-list" class="browse-list"></ul>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

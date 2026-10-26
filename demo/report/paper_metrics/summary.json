@@ -1,0 +1,60 @@
+{
+  "line_coverage": 1.0,
+  "branch_coverage": 1.0,
+  "ae": 0.9,
+  "mutation_score": 0.5,
+  "duration_seconds": 75.8353,
+  "pass_rate": 1.0,
+  "metric_definition": "paper-v1",
+  "effective_assertion_count": 6.0,
+  "identified_assertion_count": 6.0,
+  "mutation_killed": 1.0,
+  "mutation_survived": 1.0,
+  "mutation_detected": null,
+  "mutation_score_denominator": null,
+  "tir": 1.0,
+  "tir_comparable": 1,
+  "tir_improved": 1,
+  "tir_excluded": 0,
+  "tir_status": "measured",
+  "tir_categories": {
+    "recovery": {
+      "comparable": 1,
+      "improved": 1,
+      "tir": 1.0
+    }
+  },
+  "tir_exclusion_reasons": {},
+  "tir_records": [
+    {
+      "identity": [
+        "<WORKSPACE>\\examples\\minimal_report_preview\\source.py",
+        "64d2c849f23f41a394db6a623516c1eb",
+        1,
+        1,
+        "execution:executable"
+      ],
+      "category": "recovery",
+      "before": "Unsatisfied",
+      "after": "Satisfied",
+      "improved": true,
+      "excluded_reason": null
+    }
+  ],
+  "exec_count": 9,
+  "avg_exec": null,
+  "exec_count_status": "incomplete_evidence",
+  "exec_unit": "test_tool_session",
+  "execution_calls": 10,
+  "execution_unknown_calls": 1,
+  "measurement_version": 1,
+  "source_hash": "80774d96676333d9edcb810b41da1c913fde651320622082018639e29b335552",
+  "legacy_prefix": false,
+  "knowledge_occurrence": 2,
+  "knowledge_record_ids": [
+    "c2cda2e4a143827a447326a9",
+    "experience|1790144020.680897|<WORKSPACE>\\examples\\minimal_report_preview\\source.py|Stop||"
+  ],
+  "knowledge_use_frequency": 5,
+  "ledger_path": "<WORKSPACE>\\examples\\minimal_report_preview\\report\\paper_metrics\\events.jsonl"
+}

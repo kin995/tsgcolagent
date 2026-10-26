@@ -1,0 +1,506 @@
+{
+  "source_path": "<HOME>\\AppData\\Local\\Temp\\buddy_table5_audit_pytest_more\\test_java_execution_records_st0\\Calculator.java",
+  "version": 2,
+  "graph_version": 2,
+  "iteration": 1,
+  "timestamp": "2026-09-23T07:48:57.567304+00:00",
+  "nodes": {
+    "program:package:demo": {
+      "node_id": "program:package:demo",
+      "node_type": "Package",
+      "name": "demo",
+      "file_path": "<HOME>\\AppData\\Local\\Temp\\buddy_table5_audit_pytest_more\\test_java_execution_records_st0\\Calculator.java",
+      "line_start": 1,
+      "line_end": 1,
+      "code": "",
+      "visited": false,
+      "visit_count": 0,
+      "assert_count": 0,
+      "mutation_status": "unknown",
+      "coverage_status": "uncovered",
+      "repair_flag": false,
+      "priority": 0.7,
+      "coverage_defect": 0.0,
+      "assertion_defect": 0.0,
+      "mutation_defect": 0.0,
+      "exception_defect": 0.0,
+      "type_defect": 0.0,
+      "defect_score": 0.0,
+      "metadata": {
+        "language": "java",
+        "structured": true
+      }
+    },
+    "program:class:demo.Calculator:2": {
+      "node_id": "program:class:demo.Calculator:2",
+      "node_type": "Class",
+      "name": "Calculator",
+      "file_path": "<HOME>\\AppData\\Local\\Temp\\buddy_table5_audit_pytest_more\\test_java_execution_records_st0\\Calculator.java",
+      "line_start": 2,
+      "line_end": 4,
+      "code": "public class Calculator {\n  public static int add(int a, int b) { return a + b; }\n}",
+      "visited": false,
+      "visit_count": 0,
+      "assert_count": 0,
+      "mutation_status": "unknown",
+      "coverage_status": "uncovered",
+      "repair_flag": false,
+      "priority": 0.75,
+      "coverage_defect": 0.0,
+      "assertion_defect": 0.0,
+      "mutation_defect": 0.0,
+      "exception_defect": 0.0,
+      "type_defect": 0.0,
+      "defect_score": 0.0,
+      "metadata": {
+        "qualified_name": "demo.Calculator",
+        "visibility": "public",
+        "bases": [],
+        "kind": "class",
+        "type_parameters": []
+      }
+    },
+    "program:method:demo.Calculator.add:3": {
+      "node_id": "program:method:demo.Calculator.add:3",
+      "node_type": "Function",
+      "name": "add",
+      "file_path": "<HOME>\\AppData\\Local\\Temp\\buddy_table5_audit_pytest_more\\test_java_execution_records_st0\\Calculator.java",
+      "line_start": 3,
+      "line_end": 3,
+      "code": "public static int add(int a, int b) { return a + b; }",
+      "visited": false,
+      "visit_count": 0,
+      "assert_count": 0,
+      "mutation_status": "unknown",
+      "coverage_status": "uncovered",
+      "repair_flag": false,
+      "priority": 0.85,
+      "coverage_defect": 0.0,
+      "assertion_defect": 0.0,
+      "mutation_defect": 0.0,
+      "exception_defect": 0.0,
+      "type_defect": 0.0,
+      "defect_score": 0.0,
+      "metadata": {
+        "qualified_name": "demo.Calculator.add",
+        "visibility": "public",
+        "scope": "Calculator",
+        "args": [
+          "a",
+          "b"
+        ],
+        "arg_annotations": {
+          "a": "int",
+          "b": "int"
+        },
+        "returns": "int",
+        "is_static": true,
+        "is_async": false,
+        "is_generator": false,
+        "is_constructor": false,
+        "language": "java",
+        "type_parameters": [],
+        "is_override": false
+      }
+    },
+    "context:parameter:demo.Calculator.add:a:3": {
+      "node_id": "context:parameter:demo.Calculator.add:a:3",
+      "node_type": "Parameter",
+      "name": "a",
+      "file_path": "<HOME>\\AppData\\Local\\Temp\\buddy_table5_audit_pytest_more\\test_java_execution_records_st0\\Calculator.java",
+      "line_start": 3,
+      "line_end": 3,
+      "code": "",
+      "visited": false,
+      "visit_count": 0,
+      "assert_count": 0,
+      "mutation_status": "unknown",
+      "coverage_status": "uncovered",
+      "repair_flag": false,
+      "priority": 0.4,
+      "coverage_defect": 0.0,
+      "assertion_defect": 0.0,
+      "mutation_defect": 0.0,
+      "exception_defect": 0.0,
+      "type_defect": 0.0,
+      "defect_score": 0.0,
+      "metadata": {
+        "type": "int",
+        "owner": "demo.Calculator.add",
+        "kind": "positional"
+      }
+    },
+    "context:parameter:demo.Calculator.add:b:3": {
+      "node_id": "context:parameter:demo.Calculator.add:b:3",
+      "node_type": "Parameter",
+      "name": "b",
+      "file_path": "<HOME>\\AppData\\Local\\Temp\\buddy_table5_audit_pytest_more\\test_java_execution_records_st0\\Calculator.java",
+      "line_start": 3,
+      "line_end": 3,
+      "code": "",
+      "visited": false,
+      "visit_count": 0,
+      "assert_count": 0,
+      "mutation_status": "unknown",
+      "coverage_status": "uncovered",
+      "repair_flag": false,
+      "priority": 0.4,
+      "coverage_defect": 0.0,
+      "assertion_defect": 0.0,
+      "mutation_defect": 0.0,
+      "exception_defect": 0.0,
+      "type_defect": 0.0,
+      "defect_score": 0.0,
+      "metadata": {
+        "type": "int",
+        "owner": "demo.Calculator.add",
+        "kind": "positional"
+      }
+    },
+    "context:returntype:demo.Calculator.add:int:3": {
+      "node_id": "context:returntype:demo.Calculator.add:int:3",
+      "node_type": "ReturnType",
+      "name": "int",
+      "file_path": "<HOME>\\AppData\\Local\\Temp\\buddy_table5_audit_pytest_more\\test_java_execution_records_st0\\Calculator.java",
+      "line_start": 3,
+      "line_end": 3,
+      "code": "",
+      "visited": false,
+      "visit_count": 0,
+      "assert_count": 0,
+      "mutation_status": "unknown",
+      "coverage_status": "uncovered",
+      "repair_flag": false,
+      "priority": 0.4,
+      "coverage_defect": 0.0,
+      "assertion_defect": 0.0,
+      "mutation_defect": 0.0,
+      "exception_defect": 0.0,
+      "type_defect": 0.0,
+      "defect_score": 0.0,
+      "metadata": {
+        "owner": "demo.Calculator.add"
+      }
+    },
+    "program:return:demo.Calculator.add:3": {
+      "node_id": "program:return:demo.Calculator.add:3",
+      "node_type": "Return",
+      "name": "return a + b;",
+      "file_path": "<HOME>\\AppData\\Local\\Temp\\buddy_table5_audit_pytest_more\\test_java_execution_records_st0\\Calculator.java",
+      "line_start": 3,
+      "line_end": 3,
+      "code": "return a + b;",
+      "visited": false,
+      "visit_count": 0,
+      "assert_count": 0,
+      "mutation_status": "unknown",
+      "coverage_status": "uncovered",
+      "repair_flag": false,
+      "priority": 0.75,
+      "coverage_defect": 0.0,
+      "assertion_defect": 0.0,
+      "mutation_defect": 0.0,
+      "exception_defect": 0.0,
+      "type_defect": 0.0,
+      "defect_score": 0.0,
+      "metadata": {
+        "owner": "demo.Calculator.add",
+        "kind": "return"
+      }
+    },
+    "program:end:module": {
+      "node_id": "program:end:module",
+      "node_type": "End",
+      "name": "PackageEnd",
+      "file_path": "<HOME>\\AppData\\Local\\Temp\\buddy_table5_audit_pytest_more\\test_java_execution_records_st0\\Calculator.java",
+      "line_start": 1,
+      "line_end": 1,
+      "code": "",
+      "visited": false,
+      "visit_count": 0,
+      "assert_count": 0,
+      "mutation_status": "unknown",
+      "coverage_status": "uncovered",
+      "repair_flag": false,
+      "priority": 0.2,
+      "coverage_defect": 0.0,
+      "assertion_defect": 0.0,
+      "mutation_defect": 0.0,
+      "exception_defect": 0.0,
+      "type_defect": 0.0,
+      "defect_score": 0.0,
+      "metadata": {
+        "language": "java"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "program:package:demo",
+      "target": "program:class:demo.Calculator:2",
+      "edge_type": "defines",
+      "visited": false,
+      "weight": 1.0,
+      "flow_count": 0,
+      "metadata": {}
+    },
+    {
+      "source": "program:class:demo.Calculator:2",
+      "target": "program:method:demo.Calculator.add:3",
+      "edge_type": "defines",
+      "visited": false,
+      "weight": 1.0,
+      "flow_count": 0,
+      "metadata": {}
+    },
+    {
+      "source": "context:parameter:demo.Calculator.add:a:3",
+      "target": "program:method:demo.Calculator.add:3",
+      "edge_type": "type_flow",
+      "visited": false,
+      "weight": 1.0,
+      "flow_count": 0,
+      "metadata": {}
+    },
+    {
+      "source": "context:parameter:demo.Calculator.add:b:3",
+      "target": "program:method:demo.Calculator.add:3",
+      "edge_type": "type_flow",
+      "visited": false,
+      "weight": 1.0,
+      "flow_count": 0,
+      "metadata": {}
+    },
+    {
+      "source": "program:method:demo.Calculator.add:3",
+      "target": "context:returntype:demo.Calculator.add:int:3",
+      "edge_type": "type_flow",
+      "visited": false,
+      "weight": 1.0,
+      "flow_count": 0,
+      "metadata": {}
+    },
+    {
+      "source": "program:method:demo.Calculator.add:3",
+      "target": "program:return:demo.Calculator.add:3",
+      "edge_type": "return",
+      "visited": false,
+      "weight": 1.0,
+      "flow_count": 0,
+      "metadata": {}
+    },
+    {
+      "source": "program:class:demo.Calculator:2",
+      "target": "program:end:module",
+      "edge_type": "class_exit",
+      "visited": false,
+      "weight": 1.0,
+      "flow_count": 0,
+      "metadata": {}
+    },
+    {
+      "source": "program:method:demo.Calculator.add:3",
+      "target": "program:end:module",
+      "edge_type": "method_exit",
+      "visited": false,
+      "weight": 1.0,
+      "flow_count": 0,
+      "metadata": {}
+    }
+  ],
+  "history": [
+    {
+      "version": 1,
+      "timestamp": "2026-09-23T07:48:57.567304+00:00",
+      "reason": "structured context analysis completed"
+    }
+  ],
+  "flow_history": [
+    {
+      "event_type": "ContextExtracted",
+      "source_agent": "测试状态智能体",
+      "target_agent": "测试状态智能体",
+      "related_nodes": [],
+      "related_edges": [],
+      "payload": {
+        "language": "java",
+        "source_path": "<HOME>\\AppData\\Local\\Temp\\buddy_table5_audit_pytest_more\\test_java_execution_records_st0\\Calculator.java",
+        "class_count": 1,
+        "function_count": 1,
+        "rewrite_summary": {
+          "extractor": "JavaStructuredContextExtractor",
+          "parser": "tree_sitter_java",
+          "raw_class_count": 1,
+          "raw_function_count": 1,
+          "rewriter": "ContextRewriter",
+          "comments_and_format_noise_removed": true,
+          "signatures_normalized": true,
+          "call_and_control_flow_normalized": true,
+          "test_relevant_classes": 1,
+          "test_relevant_functions": 1
+        }
+      },
+      "iteration": 0,
+      "event_id": "sfe_c9dbb5c5f4c1"
+    },
+    {
+      "event_type": "InitialGraphBuilt",
+      "source_agent": "测试状态智能体",
+      "target_agent": "测试状态智能体",
+      "related_nodes": [
+        "program:package:demo",
+        "program:class:demo.Calculator:2",
+        "program:method:demo.Calculator.add:3",
+        "context:parameter:demo.Calculator.add:a:3",
+        "context:parameter:demo.Calculator.add:b:3",
+        "context:returntype:demo.Calculator.add:int:3",
+        "program:return:demo.Calculator.add:3",
+        "program:end:module"
+      ],
+      "related_edges": [],
+      "payload": {
+        "node_count": 8,
+        "edge_count": 8
+      },
+      "iteration": 0,
+      "event_id": "sfe_74d53d02b5ae"
+    }
+  ],
+  "metadata": {
+    "graph_kind": "Test-State-Model",
+    "language": "java",
+    "structured_context": {
+      "language": "java",
+      "project_root": "<HOME>\\AppData\\Local\\Temp\\buddy_table5_audit_pytest_more\\test_java_execution_records_st0",
+      "source_path": "<HOME>\\AppData\\Local\\Temp\\buddy_table5_audit_pytest_more\\test_java_execution_records_st0\\Calculator.java",
+      "package_or_module": "demo",
+      "classes": [
+        {
+          "name": "Calculator",
+          "qualified_name": "demo.Calculator",
+          "visibility": "public",
+          "methods": [
+            {
+              "name": "add",
+              "qualified_name": "demo.Calculator.add",
+              "visibility": "public",
+              "parameters": [
+                {
+                  "name": "a",
+                  "type_hint": "int",
+                  "default": null,
+                  "kind": "positional"
+                },
+                {
+                  "name": "b",
+                  "type_hint": "int",
+                  "default": null,
+                  "kind": "positional"
+                }
+              ],
+              "return_type": "int",
+              "thrown_exceptions": [],
+              "decorators_or_annotations": [],
+              "is_static": true,
+              "is_async": false,
+              "is_constructor": false,
+              "calls": [],
+              "branches": [],
+              "loops": [],
+              "returns": [
+                {
+                  "kind": "return",
+                  "text": "return a + b;",
+                  "line_start": 3,
+                  "line_end": 3,
+                  "qualified_owner": "demo.Calculator.add"
+                }
+              ],
+              "raises_or_throws": [],
+              "related_dependencies": [],
+              "line_start": 3,
+              "line_end": 3,
+              "code": "public static int add(int a, int b) { return a + b; }",
+              "class_name": "Calculator",
+              "type_parameters": [],
+              "is_override": false
+            }
+          ],
+          "constructors": [],
+          "decorators_or_annotations": [],
+          "bases": [],
+          "line_start": 2,
+          "line_end": 4,
+          "code": "public class Calculator {\n  public static int add(int a, int b) { return a + b; }\n}",
+          "kind": "class",
+          "type_parameters": []
+        }
+      ],
+      "functions": [],
+      "dependencies": [],
+      "control_structures": [],
+      "execution_fragments": [
+        {
+          "kind": "return",
+          "text": "return a + b;",
+          "line_start": 3,
+          "line_end": 3,
+          "qualified_owner": "demo.Calculator.add"
+        }
+      ],
+      "rewrite_summary": {
+        "extractor": "JavaStructuredContextExtractor",
+        "parser": "tree_sitter_java",
+        "raw_class_count": 1,
+        "raw_function_count": 1,
+        "rewriter": "ContextRewriter",
+        "comments_and_format_noise_removed": true,
+        "signatures_normalized": true,
+        "call_and_control_flow_normalized": true,
+        "test_relevant_classes": 1,
+        "test_relevant_functions": 1
+      }
+    },
+    "analysis_strategy": "structured_context",
+    "method_core": {
+      "structured_code_analysis_and_rewrite": true,
+      "test_state_guidance": true,
+      "test_state_model": true,
+      "test_state_event_exchange": true,
+      "dynamic_validation_in_test_state_agent": true,
+      "state_positioning_repair_in_test_generation_agent": true,
+      "state_target_optimization_in_test_generation_agent": true,
+      "three_primary_agents": [
+        "TestStateAgent",
+        "TestGenerationAgent",
+        "TestKnowledgeAgent"
+      ],
+      "supported_languages": [
+        "python",
+        "java"
+      ]
+    },
+    "agent_collaboration_exchange": [
+      {
+        "sender": "测试状态智能体",
+        "artifact_type": "ContextExtracted",
+        "event_id": "sfe_c9dbb5c5f4c1",
+        "iteration": 0,
+        "target_agent": "测试状态智能体",
+        "related_node_count": 0,
+        "related_edge_count": 0,
+        "state_flow_event": true
+      },
+      {
+        "sender": "测试状态智能体",
+        "artifact_type": "InitialGraphBuilt",
+        "event_id": "sfe_74d53d02b5ae",
+        "iteration": 0,
+        "target_agent": "测试状态智能体",
+        "related_node_count": 8,
+        "related_edge_count": 0,
+        "state_flow_event": true
+      }
+    ]
+  }
+}

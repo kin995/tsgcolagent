@@ -1,0 +1,2 @@
+{"event": "session_start"}
+{"event": "test_start", "nodeid": "test_source_stateflow.py::test_absolute_value_case_1"}

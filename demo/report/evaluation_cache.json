@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "entries": {
+    "python_coverage:b0604b40e2e114ce74e5655ed88d22fbb86e610d65785f09b20fb23da22c4b55": {
+      "result": {
+        "covered_lines": [
+          4,
+          6,
+          7,
+          8
+        ],
+        "missing_lines": [],
+        "covered_arcs": [
+          [
+            6,
+            7
+          ],
+          [
+            6,
+            8
+          ]
+        ],
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "combined_coverage": 1.0,
+        "stdout": "......                                                                   [100%]\n6 passed in 2.72s\n\n",
+        "stderr": "\nWrote JSON report to <HOME>\\AppData\\Local\\Temp\\stateflow_cov__864phlg\\coverage.json\n",
+        "valid": true,
+        "covered_line_count": 4,
+        "statement_count": 4,
+        "covered_branch_count": 2,
+        "branch_count": 2
+      }
+    },
+    "python_mutation:fef32795e25a9b7473b8fb9d5ce56c9cd36ce71d1d609be06ec44b35fb10dcfd": {
+      "result": {
+        "killed": 1,
+        "survived": 1,
+        "timeout": 0,
+        "invalid": 0,
+        "infra_error": 0,
+        "equivalent": 0,
+        "total": 2,
+        "effective_mutants": 2,
+        "score_reliability": "low",
+        "score": 0.5,
+        "killed_lines": [
+          6
+        ],
+        "survived_lines": [
+          6
+        ],
+        "timeout_lines": [],
+        "invalid_lines": [],
+        "infra_error_lines": [],
+        "equivalent_lines": [],
+        "details": [
+          "survived mutation at line 6",
+          "timeout retry mutation at line 6 with 15s -> killed",
+          "killed mutation at line 6"
+        ],
+        "candidate_count": 2,
+        "attempted_mutants": 2,
+        "low_sample_reason": "源码只发现 2 个可变异位置，最多只能尝试 2 个样本",
+        "autonomy_action": "系统会把该任务标记为低样本变异，不把高分当作强证据，并建议增加边界和分支区分断言",
+        "timeout_retries": 1,
+        "evaluation_profile": "screening",
+        "profile_limit": 8,
+        "selected_candidate_lines": [
+          6,
+          6
+        ],
+        "candidate_results": [
+          {
+            "id": 0,
+            "line": 6,
+            "status": "survived"
+          },
+          {
+            "id": 1,
+            "line": 6,
+            "status": "killed"
+          }
+        ],
+        "final_evaluation": false
+      }
+    },
+    "python_mutation:2d0c9d97753751d8bbcc97ff62158b99dfc0935c17be46d7b52b374130bf050b": {
+      "result": {
+        "killed": 1,
+        "survived": 1,
+        "timeout": 0,
+        "invalid": 0,
+        "infra_error": 0,
+        "equivalent": 0,
+        "total": 2,
+        "effective_mutants": 2,
+        "score_reliability": "low",
+        "score": 0.5,
+        "killed_lines": [
+          6
+        ],
+        "survived_lines": [
+          6
+        ],
+        "timeout_lines": [],
+        "invalid_lines": [],
+        "infra_error_lines": [],
+        "equivalent_lines": [],
+        "details": [
+          "reused killed mutation at line 6",
+          "killed mutation at line 6",
+          "reused survived mutation at line 6",
+          "survived mutation at line 6"
+        ],
+        "candidate_count": 2,
+        "attempted_mutants": 2,
+        "low_sample_reason": "源码只发现 2 个可变异位置，最多只能尝试 2 个样本",
+        "autonomy_action": "系统会把该任务标记为低样本变异，不把高分当作强证据，并建议增加边界和分支区分断言",
+        "timeout_retries": 1,
+        "evaluation_profile": "full",
+        "profile_limit": 20,
+        "selected_candidate_lines": [
+          6,
+          6
+        ],
+        "candidate_results": [
+          {
+            "id": 1,
+            "line": 6,
+            "status": "killed"
+          },
+          {
+            "id": 0,
+            "line": 6,
+            "status": "survived"
+          }
+        ],
+        "final_evaluation": true
+      }
+    }
+  }
+}

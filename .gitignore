@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+tsgtest_runs/
+.tsgtest_test/
+frontend/node_modules/
+java_workspace/.m2/

@@ -1,0 +1,11 @@
+# tsgtest 运行配置（全部可被 TSGTEST_* 环境变量覆盖）
+[tsgtest]
+host = "127.0.0.1"
+port = 8770
+runs_dir = "tsgtest_runs"
+ollama_base_url = "http://127.0.0.1:11434"
+model = "deepseek-r1:14b"
+temperature = 0.5
+max_rounds = 3
+max_files = 20
+# knowledge_store = "knowledge_store/test_knowledge_guidance.json"

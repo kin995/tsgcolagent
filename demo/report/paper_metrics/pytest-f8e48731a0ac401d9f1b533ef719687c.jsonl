@@ -1,0 +1,8 @@
+{"event": "session_start"}
+{"event": "test_start", "nodeid": "test_source_stateflow.py::test_absolute_value_case_1"}
+{"event": "test_start", "nodeid": "test_source_stateflow.py::test_absolute_value_case_2"}
+{"event": "test_start", "nodeid": "test_source_stateflow.py::test_absolute_value_case_3"}
+{"event": "test_start", "nodeid": "test_source_stateflow.py::test_absolute_value_case_4"}
+{"event": "test_start", "nodeid": "test_source_stateflow.py::test_absolute_value_case_5"}
+{"event": "test_start", "nodeid": "test_source_stateflow.py::test_absolute_value_case_6"}
+{"event": "session_finish", "exitstatus": 0}

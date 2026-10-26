@@ -1,0 +1,10 @@
+.task-summary-visual { display: grid; gap: 8px; }
+.task-summary-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.task-summary-facts > div { display: grid; gap: 5px; min-width: 0; padding: 12px; border: 1px solid #e0e8f3; border-radius: 8px; background: #f9fbff; }
+.task-summary-facts small { color: #7488a3; font-size: 10px; }
+.task-summary-facts b { overflow-wrap: anywhere; color: #29496d; font-size: 14px; }
+.task-summary-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
+.task-summary-metrics > div { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-width: 0; padding: 9px 11px; border: 1px solid #e5ebf4; border-radius: 7px; background: #fff; }
+.task-summary-metrics span { overflow: hidden; color: #637890; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+.task-summary-metrics b { color: #26496e; font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+@media (max-width: 460px) { .task-summary-facts, .task-summary-metrics { grid-template-columns: 1fr; } }

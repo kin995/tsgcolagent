@@ -1,0 +1,489 @@
+{
+  "records": [
+    {
+      "experience_id": "c2cda2e4a143827a447326a9",
+      "timestamp": 1790143964.489838,
+      "source": "<WORKSPACE>\\examples\\minimal_report_preview\\source.py",
+      "model": "deepseek-r1:14b",
+      "project_version": "pteg-agent-v2",
+      "prompt_version": "test-plan-v2",
+      "schema_version": "test-plan-schema-v1",
+      "task_signature": {
+        "node_count": 8,
+        "function_count": 1,
+        "branch_count": 1,
+        "loop_count": 0,
+        "exception_count": 0,
+        "mutation_survivor_count": 0,
+        "language": "python",
+        "argument_types": [
+          "int"
+        ],
+        "operators": [
+          "<"
+        ],
+        "state_types": [
+          "Branch",
+          "End",
+          "Function",
+          "Module",
+          "Parameter",
+          "Return",
+          "ReturnType"
+        ],
+        "target_terms": [
+          "absolute_value",
+          "value < 0"
+        ],
+        "complexity": "low"
+      },
+      "target_evidence_ids": [],
+      "input_partition": "empty",
+      "boundary_operator": ">",
+      "oracle_kind": "length_equals",
+      "candidate_status": "accepted",
+      "failure_category": null,
+      "agent": "ExecutionAgent/TestGenerationAgent",
+      "action": "generate_test_plan",
+      "candidate_hash": "6e3c28cd9bb9d895",
+      "strategy_fingerprint": "a9d443e125f80968",
+      "accepted": true,
+      "pytest_passed": true,
+      "before_metrics": {},
+      "after_metrics": {},
+      "quality_delta": {
+        "sfc": 0.0,
+        "ae": 0.0,
+        "mutation": 0.0
+      },
+      "delta_sfc": 0.0,
+      "delta_ae": 0.0,
+      "delta_mutation": 0.0,
+      "runtime_seconds": 0.0,
+      "llm_calls": 0,
+      "reward": 0.0,
+      "rejection_reason": null,
+      "learning_notes": [
+        {
+          "lesson_type": "optimization",
+          "reason_type": "no_measurable_gain",
+          "cause": "The candidate ran successfully but did not improve state-flow, assertion, or mutation evidence.",
+          "solution": "Next time add tests that target uncovered branches or survived mutants instead of adding more equivalent examples.",
+          "reminder": "Reason: no_measurable_gain. Cause: The candidate ran successfully but did not improve state-flow, assertion, or mutation evidence. Solution: Next time add tests that target uncovered branches or survived mutants instead of adding more equivalent examples.",
+          "evidence": {
+            "agent": "ExecutionAgent/TestGenerationAgent",
+            "action": "generate_test_plan",
+            "quality_delta": {
+              "sfc": 0.0,
+              "ae": 0.0,
+              "mutation": 0.0
+            }
+          }
+        }
+      ],
+      "prompt_reminders": [
+        "Reason: no_measurable_gain. Cause: The candidate ran successfully but did not improve state-flow, assertion, or mutation evidence. Solution: Next time add tests that target uncovered branches or survived mutants instead of adding more equivalent examples."
+      ]
+    },
+    {
+      "timestamp": 1790144020.680897,
+      "source": "<WORKSPACE>\\examples\\minimal_report_preview\\source.py",
+      "model": "deepseek-r1:14b",
+      "project_version": "pteg-agent-v3",
+      "prompt_version": "unknown",
+      "schema_version": "unknown",
+      "agent": "Stop",
+      "dominant_gap": "coverage",
+      "gaps": {
+        "coverage": 0.0,
+        "mutation": 0.0,
+        "assertion": 0.0,
+        "exception": 0.0,
+        "runtime_type": 0.0
+      },
+      "task_features": {
+        "node_count": 62,
+        "function_count": 1,
+        "branch_count": 1,
+        "loop_count": 0,
+        "exception_count": 0,
+        "mutation_survivor_count": 18
+      },
+      "task_signature": {
+        "node_count": 62,
+        "function_count": 1,
+        "branch_count": 1,
+        "loop_count": 0,
+        "exception_count": 0,
+        "mutation_survivor_count": 18,
+        "language": "python",
+        "argument_types": [
+          "int"
+        ],
+        "operators": [
+          "<"
+        ],
+        "state_types": [
+          "Assertion",
+          "Branch",
+          "End",
+          "Execution",
+          "Function",
+          "Module",
+          "Mutation",
+          "Parameter",
+          "Return",
+          "ReturnType",
+          "RuntimeState",
+          "RuntimeType",
+          "TestCase"
+        ],
+        "target_terms": [
+          "absolute_value",
+          "value < 0"
+        ],
+        "complexity": "medium"
+      },
+      "before": {
+        "pytest_passed": true,
+        "coverage_percent": 1.0,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "combined_coverage": 1.0,
+        "mutation_score": 0.5,
+        "sfc": 1.0,
+        "ae": 0.9,
+        "sfq": 0.975,
+        "tsq": 0.975,
+        "pv": 1.0,
+        "nrr": 1.0,
+        "test_path": "<WORKSPACE>\\examples\\minimal_report_preview\\report\\test_source_stateflow.py",
+        "failure_category": "valid_baseline",
+        "failed_tests": [],
+        "coverage_valid": true,
+        "mutation_valid": true,
+        "quality_status": "quality_high",
+        "next_allowed_agents": [],
+        "collected_count": 6,
+        "timed_out": false,
+        "effective_mutants": 2,
+        "mutation_reliability": "screening",
+        "weak_assertions_only": false,
+        "exception_only": false,
+        "normal_behavior_tests": 6,
+        "assertion_count": 6,
+        "weak_assertions": 0,
+        "effective_assertions": 6,
+        "assertion_quality_explanation": "共 6 个断言，均为有效断言",
+        "sfc_components": {
+          "node_coverage": 0.8,
+          "edge_coverage": 0.5,
+          "path_coverage": 1.0,
+          "program_nodes": 5,
+          "visited_program_nodes": 4,
+          "program_edges": 4,
+          "visited_program_edges": 2,
+          "branch_like_nodes": 1,
+          "visited_branch_like_nodes": 1
+        },
+        "timeout_kind": null,
+        "timeout_reason": null,
+        "timeout_likely_location": null,
+        "timeout_should_repair": true,
+        "weak_quality_flags": [
+          "mutation_evidence_limited"
+        ],
+        "threshold_failures": {},
+        "failure_location": null,
+        "repair_failure_reason": null,
+        "evaluation_profile": "screening",
+        "mutation_complete": false,
+        "cache_hit": false,
+        "mutation_evidence": {
+          "killed": 1,
+          "survived": 1,
+          "timeout": 0,
+          "invalid": 0,
+          "infra_error": 0,
+          "equivalent": 0,
+          "total": 2,
+          "effective_mutants": 2,
+          "score_reliability": "screening",
+          "score": 0.5,
+          "killed_lines": [
+            6
+          ],
+          "survived_lines": [
+            6
+          ],
+          "timeout_lines": [],
+          "invalid_lines": [],
+          "infra_error_lines": [],
+          "equivalent_lines": [],
+          "details": [
+            "survived mutation at line 6",
+            "timeout retry mutation at line 6 with 15s -> killed",
+            "killed mutation at line 6"
+          ],
+          "candidate_count": 2,
+          "attempted_mutants": 2,
+          "low_sample_reason": "源码只发现 2 个可变异位置，最多只能尝试 2 个样本",
+          "autonomy_action": "系统会把该任务标记为低样本变异，不把高分当作强证据，并建议增加边界和分支区分断言",
+          "timeout_retries": 1,
+          "evaluation_profile": "screening",
+          "profile_limit": 8,
+          "selected_candidate_lines": [
+            6,
+            6
+          ],
+          "candidate_results": [
+            {
+              "id": 0,
+              "line": 6,
+              "status": "survived"
+            },
+            {
+              "id": 1,
+              "line": 6,
+              "status": "killed"
+            }
+          ],
+          "final_evaluation": false,
+          "cache_hit": false
+        },
+        "quality_assessment": {
+          "status": "quality_high",
+          "feasible": true,
+          "objective": "under executable test intent, maximize useful quality while controlling unnecessary test and iteration cost",
+          "dimensions": {
+            "coverage": {
+              "available": true,
+              "acceptable": true,
+              "high": true,
+              "line": 1.0,
+              "branch": 1.0,
+              "sfc": 1.0
+            },
+            "assertion": {
+              "available": true,
+              "acceptable": true,
+              "high": true,
+              "ae": 0.9,
+              "effective_assertions": 6
+            },
+            "mutation": {
+              "available": false,
+              "acceptable": false,
+              "high": false,
+              "score": 0.5,
+              "effective_mutants": 2,
+              "reliability": "screening"
+            }
+          },
+          "evidence_confidence": 0.6667,
+          "assertion_signal_ratio": 1.0,
+          "acceptable_dimension_count": 2,
+          "high_dimension_count": 2,
+          "critical_weaknesses": [],
+          "rationale": [
+            "测试可编译/运行，包含正常行为和有效断言",
+            "2个可用核心质量维度达到可接受标准",
+            "可靠变异样本不足，等级不声称具有高变异检测证据"
+          ]
+        }
+      },
+      "after": {
+        "pytest_passed": true,
+        "coverage_percent": 1.0,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "combined_coverage": 1.0,
+        "mutation_score": 0.5,
+        "sfc": 1.0,
+        "ae": 0.9,
+        "sfq": 0.975,
+        "tsq": 0.975,
+        "pv": 1.0,
+        "nrr": 1.0,
+        "test_path": "<WORKSPACE>\\examples\\minimal_report_preview\\report\\test_source_stateflow.py",
+        "failure_category": "valid_baseline",
+        "failed_tests": [],
+        "coverage_valid": true,
+        "mutation_valid": true,
+        "quality_status": "quality_high",
+        "next_allowed_agents": [],
+        "collected_count": 6,
+        "timed_out": false,
+        "effective_mutants": 2,
+        "mutation_reliability": "low",
+        "weak_assertions_only": false,
+        "exception_only": false,
+        "normal_behavior_tests": 6,
+        "assertion_count": 6,
+        "weak_assertions": 0,
+        "effective_assertions": 6,
+        "assertion_quality_explanation": "共 6 个断言，均为有效断言",
+        "sfc_components": {
+          "node_coverage": 0.8,
+          "edge_coverage": 0.5,
+          "path_coverage": 1.0,
+          "program_nodes": 5,
+          "visited_program_nodes": 4,
+          "program_edges": 4,
+          "visited_program_edges": 2,
+          "branch_like_nodes": 1,
+          "visited_branch_like_nodes": 1
+        },
+        "timeout_kind": null,
+        "timeout_reason": null,
+        "timeout_likely_location": null,
+        "timeout_should_repair": true,
+        "weak_quality_flags": [
+          "mutation_evidence_limited"
+        ],
+        "threshold_failures": {},
+        "failure_location": null,
+        "repair_failure_reason": null,
+        "evaluation_profile": "full",
+        "mutation_complete": true,
+        "cache_hit": false,
+        "mutation_evidence": {
+          "killed": 1,
+          "survived": 1,
+          "timeout": 0,
+          "invalid": 0,
+          "infra_error": 0,
+          "equivalent": 0,
+          "total": 2,
+          "effective_mutants": 2,
+          "score_reliability": "low",
+          "score": 0.5,
+          "killed_lines": [
+            6
+          ],
+          "survived_lines": [
+            6
+          ],
+          "timeout_lines": [],
+          "invalid_lines": [],
+          "infra_error_lines": [],
+          "equivalent_lines": [],
+          "details": [
+            "reused killed mutation at line 6",
+            "killed mutation at line 6",
+            "reused survived mutation at line 6",
+            "survived mutation at line 6"
+          ],
+          "candidate_count": 2,
+          "attempted_mutants": 2,
+          "low_sample_reason": "源码只发现 2 个可变异位置，最多只能尝试 2 个样本",
+          "autonomy_action": "系统会把该任务标记为低样本变异，不把高分当作强证据，并建议增加边界和分支区分断言",
+          "timeout_retries": 1,
+          "evaluation_profile": "full",
+          "profile_limit": 20,
+          "selected_candidate_lines": [
+            6,
+            6
+          ],
+          "candidate_results": [
+            {
+              "id": 1,
+              "line": 6,
+              "status": "killed"
+            },
+            {
+              "id": 0,
+              "line": 6,
+              "status": "survived"
+            }
+          ],
+          "final_evaluation": true,
+          "cache_hit": false
+        },
+        "quality_assessment": {
+          "status": "quality_high",
+          "feasible": true,
+          "objective": "under executable test intent, maximize useful quality while controlling unnecessary test and iteration cost",
+          "dimensions": {
+            "coverage": {
+              "available": true,
+              "acceptable": true,
+              "high": true,
+              "line": 1.0,
+              "branch": 1.0,
+              "sfc": 1.0
+            },
+            "assertion": {
+              "available": true,
+              "acceptable": true,
+              "high": true,
+              "ae": 0.9,
+              "effective_assertions": 6
+            },
+            "mutation": {
+              "available": false,
+              "acceptable": false,
+              "high": false,
+              "score": 0.5,
+              "effective_mutants": 2,
+              "reliability": "low"
+            }
+          },
+          "evidence_confidence": 0.6667,
+          "assertion_signal_ratio": 1.0,
+          "acceptable_dimension_count": 2,
+          "high_dimension_count": 2,
+          "critical_weaknesses": [],
+          "rationale": [
+            "测试可编译/运行，包含正常行为和有效断言",
+            "2个可用核心质量维度达到可接受标准",
+            "可靠变异样本不足，等级不声称具有高变异检测证据"
+          ]
+        }
+      },
+      "delta_sfq": 0.0,
+      "runtime_seconds": 0.0,
+      "llm_calls": 0,
+      "token_count": 0,
+      "expected_reward": 0.0,
+      "actual_reward": 0.0,
+      "reward_prediction_error": 0.0,
+      "outcome": "no_gain",
+      "reward": 0.0,
+      "learning_notes": [
+        {
+          "lesson_type": "optimization",
+          "reason_type": "mutation_evidence_limited",
+          "cause": "The runnable test suite is usable but still below a quality target.",
+          "solution": "Optimize only the weak dimension reported by evaluation and keep passing tests unchanged.",
+          "reminder": "Reason: mutation_evidence_limited. Cause: The runnable test suite is usable but still below a quality target. Solution: Optimize only the weak dimension reported by evaluation and keep passing tests unchanged.",
+          "evidence": {
+            "source": "<WORKSPACE>\\examples\\minimal_report_preview\\source.py",
+            "quality_status": "quality_high"
+          }
+        },
+        {
+          "lesson_type": "optimization",
+          "reason_type": "no_gain_after_optimization",
+          "cause": "The test suite stayed runnable but the selected optimization did not close the main gap.",
+          "solution": "Close this threshold gap with the smallest targeted test addition or assertion repair.",
+          "reminder": "Reason: no_gain_after_optimization. Cause: The test suite stayed runnable but the selected optimization did not close the main gap. Solution: Close this threshold gap with the smallest targeted test addition or assertion repair.",
+          "evidence": {
+            "agent": "Stop",
+            "gaps": {
+              "coverage": 0.0,
+              "mutation": 0.0,
+              "assertion": 0.0,
+              "exception": 0.0,
+              "runtime_type": 0.0
+            }
+          }
+        }
+      ],
+      "prompt_reminders": [
+        "Reason: mutation_evidence_limited. Cause: The runnable test suite is usable but still below a quality target. Solution: Optimize only the weak dimension reported by evaluation and keep passing tests unchanged.",
+        "Reason: no_gain_after_optimization. Cause: The test suite stayed runnable but the selected optimization did not close the main gap. Solution: Close this threshold gap with the smallest targeted test addition or assertion repair."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+.valifix-page { display: grid; gap: 16px; max-width: 1320px; margin: 0 auto; padding-bottom: 30px; }
+.valifix-hero, .valifix-panel { background: #fff; border: 1px solid #dfe6ef; border-radius: 10px; box-shadow: 0 8px 24px rgba(31, 57, 102, .04); }
+.valifix-hero { padding: 28px 30px; background: linear-gradient(118deg, #fff 55%, #f4f8ff); }
+.valifix-source-label { display: inline-flex; align-items: center; gap: 6px; color: #4569b2; font-size: 11px; font-weight: 700; }
+.valifix-source-label svg { width: 15px; height: 15px; }
+.valifix-hero h1 { margin: 10px 0 9px; color: #172944; font-size: clamp(25px, 2.4vw, 34px); line-height: 1.25; }
+.valifix-hero h1 span { color: #55718f; font-size: .72em; font-weight: 600; }
+.valifix-hero p { max-width: 720px; margin: 0; color: #5b6d85; font-size: 13px; line-height: 1.75; }
+.valifix-hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 17px; }
+.valifix-hero-tags span { padding: 6px 9px; border: 1px solid #dce6f5; border-radius: 6px; background: #f8faff; color: #395f98; font-size: 11px; }
+.valifix-panel { min-width: 0; padding: 22px; }
+.valifix-section-heading { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 18px; }
+.valifix-section-heading > span { display: grid; flex: 0 0 auto; place-items: center; width: 34px; height: 34px; border-radius: 8px; background: #edf3ff; color: #4d71bd; }
+.valifix-section-heading svg { width: 18px; height: 18px; }
+.valifix-section-heading div { min-width: 0; }
+.valifix-section-heading h2 { margin: 0; color: #192d49; font-size: 17px; line-height: 1.3; }
+.valifix-section-heading p { margin: 4px 0 0; color: #74849a; font-size: 11px; line-height: 1.5; }
+.valifix-prompt-count { margin-left: auto; color: #5f79aa; font-size: 10px; letter-spacing: .08em; white-space: nowrap; }
+.valifix-prompt-groups { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
+.valifix-prompt-groups button { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #dce5f2; border-radius: 7px; background: #fff; color: #526983; font-size: 11px; font-weight: 700; }
+.valifix-prompt-groups button.selected { border-color: #7295d7; background: #f1f6ff; color: #28569d; }
+.valifix-prompt-groups small { color: #90a0ba; font-size: 10px; }
+.valifix-prompt-layout { display: grid; grid-template-columns: minmax(180px, 245px) minmax(0, 1fr); gap: 11px; }
+.valifix-prompt-list { display: grid; align-content: start; gap: 6px; padding: 10px; border: 1px solid #e3eaf4; border-radius: 9px; background: #f9fbfe; }
+.valifix-prompt-list button { display: grid; grid-template-columns: 22px minmax(0, 1fr) 15px; align-items: center; gap: 7px; min-height: 44px; padding: 8px; border: 1px solid transparent; border-radius: 6px; background: transparent; color: #425a78; text-align: left; font-size: 11px; }
+.valifix-prompt-list button.selected { border-color: #c6d8f8; background: #edf4ff; color: #274f91; font-weight: 700; }
+.valifix-prompt-list button small { color: #8396b6; font-size: 10px; }
+.valifix-prompt-list button svg { width: 14px; height: 14px; }
+.valifix-prompt-display { min-width: 0; overflow: hidden; border: 1px solid #dce6f3; border-radius: 9px; background: #12213a; }
+.valifix-prompt-display header { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border-bottom: 1px solid rgba(214, 228, 255, .13); color: #f2f6ff; }
+.valifix-prompt-display header span { color: #9cb7ea; font-size: 9px; font-weight: 700; letter-spacing: .12em; }
+.valifix-prompt-display header strong { font-size: 12px; }
+.valifix-prompt-display pre { margin: 0; min-height: 225px; padding: 18px; color: #e1ebfb; font: 12px/1.7 Consolas, 'Courier New', monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
+.valifix-compact-flow { margin-top: 17px; padding-top: 16px; border-top: 1px solid #e5ecf5; }
+.valifix-compact-flow-heading { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: #244066; }
+.valifix-compact-flow-heading svg { width: 17px; height: 17px; color: #6081bb; }
+.valifix-compact-flow-heading strong { font-size: 12px; }
+.valifix-compact-flow-heading small { margin-left: auto; color: #8595aa; font-size: 10px; }
+.valifix-compact-steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 7px; }
+.valifix-compact-steps > div { position: relative; display: flex; align-items: center; gap: 7px; min-width: 0; padding: 10px 9px; border: 1px solid #e0e8f4; border-radius: 7px; background: #f9fbff; }
+.valifix-compact-steps > div > span { color: #7d93b6; font-size: 9px; font-weight: 700; }
+.valifix-compact-steps > div > svg:not(.valifix-compact-arrow) { width: 15px; height: 15px; color: #5d7fbd; }
+.valifix-compact-steps b { overflow: hidden; color: #2c4566; font-size: 10px; white-space: nowrap; text-overflow: ellipsis; }
+.valifix-compact-arrow { position: absolute; z-index: 1; right: -13px; width: 13px; height: 13px; color: #8398ba; }
+.valifix-compact-flow p { display: flex; align-items: center; gap: 6px; margin: 10px 0 0; color: #7389a3; font-size: 10px; }
+.valifix-compact-flow p svg { width: 13px; height: 13px; }
+.valifix-prompt-groups button:focus-visible, .valifix-prompt-list button:focus-visible, .valifix-validation-list button:focus-visible, .valifix-repair-list button:focus-visible, .valifix-metric-tabs button:focus-visible, .valifix-stage-projects button:focus-visible { outline: 3px solid #7396d9; outline-offset: 2px; }
+.valifix-mechanisms { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.valifix-validation-list { display: grid; gap: 9px; }
+.valifix-validation-list > button { display: grid; grid-template-columns: 32px minmax(0, 1fr) 17px; align-items: center; gap: 12px; width: 100%; min-height: 72px; padding: 12px; border: 1px solid #e4eaf3; border-radius: 8px; background: #fafcff; text-align: left; }
+.valifix-validation-list > button:hover { border-color: #9ab5e4; background: #f4f8ff; }
+.valifix-validation-list i { color: #7991b3; font-size: 12px; font-style: normal; font-weight: 700; }
+.valifix-validation-list strong { color: #2a405d; font-size: 12px; }
+.valifix-validation-list small { display: block; margin-top: 5px; color: #667b93; font-size: 11px; line-height: 1.5; }
+.valifix-validation-list svg { width: 16px; height: 16px; color: #91a5c5; }
+.valifix-repair-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.valifix-repair-list button { display: grid; justify-items: start; gap: 5px; min-height: 78px; padding: 11px; border: 1px solid #e1e8f1; border-radius: 8px; background: #fff; color: #6e819b; text-align: left; cursor: pointer; }
+.valifix-repair-list button.selected { border-color: #6d95d7; background: #f2f7ff; }
+.valifix-repair-list button span { color: #7093c8; font-size: 10px; font-weight: 700; }
+.valifix-repair-list button strong { color: #2b4565; font-size: 12px; }
+.valifix-repair-list button small { color: #8a9aae; font-size: 10px; }
+.valifix-repair-detail { min-height: 80px; margin-top: 12px; padding: 12px 14px; border-left: 3px solid #6e94d6; background: #f7faff; }
+.valifix-repair-detail strong { color: #244a7a; font-size: 12px; }
+.valifix-repair-detail p { margin: 5px 0 0; color: #5d728c; font-size: 11px; line-height: 1.6; }
+.valifix-mechanism-note { margin: 12px 0 0; color: #7b8da1; font-size: 11px; line-height: 1.6; }
+.valifix-metric-groups { display: grid; gap: 15px; }
+.valifix-metric-group h3 { margin: 0 0 7px; color: #5c7393; font-size: 11px; }
+.valifix-metric-tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 8px; }
+.valifix-metric-tabs button { display: grid; justify-items: start; gap: 4px; padding: 11px 13px; border: 1px solid #dfe7f2; border-radius: 8px; background: #fff; color: #76879d; cursor: pointer; text-align: left; }
+.valifix-metric-tabs button.selected { border-color: #7197d8; background: #f1f6ff; }
+.valifix-metric-tabs b { color: #345b9a; font-size: 13px; }.valifix-metric-tabs span { font-size: 10px; }
+.valifix-comparison { display: grid; gap: 14px; margin-top: 20px; }
+.valifix-comparison-heading strong { color: #223b5b; font-size: 13px; }
+.valifix-comparison-heading p { margin: 5px 0 0; color: #72849b; font-size: 11px; }
+.valifix-comparison-heading small { display: block; margin-top: 4px; color: #8a9bb1; font-size: 10px; }
+.valifix-project-row { display: grid; grid-template-columns: 128px minmax(0, 1fr) max-content; align-items: center; gap: 13px; color: #405775; font-size: 11px; }
+.valifix-project-row > strong { color: #223e66; font-size: 12px; text-align: right; }
+.valifix-bar-track { height: 11px; overflow: hidden; border-radius: 999px; background: #edf2f8; }
+.valifix-bar-track i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #7c9ee0, #5079c7); transition: width .25s ease; }
+.valifix-stage-section, .valifix-overall-metrics { margin-top: 22px; padding-top: 19px; border-top: 1px solid #e5ecf5; }
+.valifix-stage-section > header, .valifix-overall-metrics > header { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
+.valifix-stage-section h3, .valifix-overall-metrics h3 { margin: 0; color: #213a5b; font-size: 14px; }
+.valifix-stage-section > header p, .valifix-overall-metrics > header p { margin: 4px 0 0; color: #7b8ca2; font-size: 10px; }
+.valifix-stage-section > header > span { margin-left: auto; color: #8095b5; font-size: 10px; white-space: nowrap; }
+.valifix-stage-projects { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 11px; }
+.valifix-stage-projects button { padding: 7px 10px; border: 1px solid #dce5f2; border-radius: 6px; background: #fff; color: #57708f; font-size: 10px; }
+.valifix-stage-projects button.selected { border-color: #7799d9; background: #f1f6ff; color: #315b9a; font-weight: 700; }
+.valifix-stage-table-wrap { overflow-x: auto; border: 1px solid #e0e8f3; border-radius: 8px; }
+.valifix-stage-table-wrap table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 11px; }
+.valifix-stage-table-wrap th, .valifix-stage-table-wrap td { padding: 10px 12px; border-bottom: 1px solid #e8eef6; text-align: right; white-space: nowrap; }
+.valifix-stage-table-wrap tr:last-child th, .valifix-stage-table-wrap tr:last-child td { border-bottom: 0; }
+.valifix-stage-table-wrap thead { background: #f5f8fd; color: #466280; }
+.valifix-stage-table-wrap th:first-child { text-align: left; }
+.valifix-stage-table-wrap th small { display: block; margin-top: 3px; color: #899bb2; font-weight: 400; }
+.valifix-stage-table-wrap tbody th { color: #456281; font-weight: 600; }
+.valifix-stage-table-wrap tbody th span { margin-left: 7px; color: #7c8da2; font-weight: 400; }
+.valifix-stage-table-wrap tbody td { color: #263f60; font-variant-numeric: tabular-nums; }
+.valifix-stage-table-wrap tbody tr:last-child { background: #f5f9ff; }
+.valifix-stage-note { margin: 10px 0 0; color: #7588a0; font-size: 10px; line-height: 1.6; }
+.valifix-overall-metrics > div { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+.valifix-overall-metrics article { display: grid; gap: 5px; min-width: 0; padding: 13px; border: 1px solid #e1e9f4; border-radius: 8px; background: #fafcff; }
+.valifix-overall-metrics article small { color: #6b819d; font-size: 10px; }
+.valifix-overall-metrics article strong { color: #2c568d; font-size: 19px; }
+.valifix-overall-metrics article span { color: #8393a8; font-size: 10px; line-height: 1.5; }
+.valifix-dialog-backdrop { position: fixed; z-index: 120; inset: 0; display: grid; place-items: center; padding: 16px; background: rgba(20, 35, 59, .36); }
+.valifix-type-dialog { width: min(540px, 100%); max-height: calc(100vh - 32px); overflow: auto; padding: 22px; border: 1px solid #d5e2f3; border-radius: 12px; background: #fff; box-shadow: 0 22px 65px rgba(19, 37, 66, .2); }
+.valifix-type-dialog > header { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.valifix-type-dialog > header span { color: #6687bc; font-size: 10px; font-weight: 700; letter-spacing: .1em; }
+.valifix-type-dialog > header button { display: grid; place-items: center; width: 30px; height: 30px; border: 0; border-radius: 6px; background: #f1f5fb; color: #526985; }
+.valifix-type-dialog > header svg { width: 17px; height: 17px; }
+.valifix-type-dialog h2 { margin: 9px 0 5px; color: #1e3552; font-size: 21px; }
+.valifix-type-dialog > p { margin: 0 0 16px; color: #627891; font-size: 12px; line-height: 1.7; }
+.valifix-dialog-section { margin-top: 10px; padding: 14px; border: 1px solid #e2eaf5; border-radius: 8px; background: #f9fbff; }
+.valifix-dialog-section h3 { margin: 0 0 8px; color: #345476; font-size: 12px; }
+.valifix-dialog-section ul { display: grid; gap: 6px; margin: 0; padding-left: 17px; color: #536a84; font-size: 11px; line-height: 1.6; }
+.valifix-dialog-section p { margin: 0; color: #536a84; font-size: 11px; line-height: 1.7; }
+.valifix-dialog-section.example { border-color: #d6e3f9; background: #f3f7ff; }
+@media (max-width: 1080px) { .valifix-mechanisms { grid-template-columns: 1fr; } }
+@media (max-width: 820px) { .valifix-compact-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }.valifix-compact-arrow { display: none; } }
+@media (max-width: 560px) { .valifix-hero, .valifix-panel { padding: 17px; }.valifix-hero h1 { font-size: 26px; }.valifix-hero h1 span { display: block; margin-top: 3px; }.valifix-prompt-panel .valifix-section-heading { flex-wrap: wrap; }.valifix-prompt-panel .valifix-section-heading > div { flex: 1 1 calc(100% - 44px); }.valifix-prompt-count { margin: 0 0 0 44px; }.valifix-prompt-groups button { flex: 1 1 calc(50% - 7px); justify-content: space-between; }.valifix-prompt-layout { grid-template-columns: 1fr; }.valifix-prompt-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }.valifix-prompt-list button { grid-template-columns: 18px minmax(0, 1fr); }.valifix-prompt-list button svg { display: none; }.valifix-prompt-display pre { min-height: 0; font-size: 11px; }.valifix-compact-flow-heading { flex-wrap: wrap; }.valifix-compact-flow-heading small { width: 100%; margin-left: 25px; }.valifix-compact-steps, .valifix-metric-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }.valifix-compact-steps > div { padding: 8px; }.valifix-project-row { grid-template-columns: 80px minmax(0, 1fr) max-content; gap: 8px; font-size: 10px; }.valifix-project-row > strong { font-size: 10px; }.valifix-repair-list { grid-template-columns: 1fr; }.valifix-repair-list button { min-height: 52px; grid-template-columns: 20px 1fr auto; align-items: center; }.valifix-repair-list button small { justify-self: end; }.valifix-overall-metrics > div { grid-template-columns: 1fr; }.valifix-type-dialog { padding: 17px; } }
+@media (prefers-reduced-motion: reduce) { .valifix-bar-track i { transition: none; } }

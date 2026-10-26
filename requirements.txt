@@ -1,0 +1,9 @@
+﻿# TSGColAgent 璁烘枃浠ｇ爜 路 Python 渚濊禆锛圥ython >= 3.11锛?# 涓?鍙傝禌鑽夌/pyproject.toml 淇濇寔涓€鑷达紱pytest / coverage 鍦ㄨ繍琛屾椂涔熶細琚皟鐢ㄣ€?pytest>=8.0
+coverage>=7.0
+sortedcontainers>=2.4,<3.0
+langgraph>=1.0,<2.0
+langgraph-checkpoint-sqlite>=3.0,<4.0
+tree-sitter>=0.25,<0.26
+tree-sitter-java>=0.23,<0.24
+ollama>=0.4,<1.0
+
