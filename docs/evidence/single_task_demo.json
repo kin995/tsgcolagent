@@ -1,0 +1,30 @@
+{
+  "kind": "historical_run",
+  "note": "仓库内置的脱敏示例运行，不是本次现场生成",
+  "source": "<WORKSPACE>\\examples\\minimal_report_preview\\source.py",
+  "test_path": "<WORKSPACE>\\examples\\minimal_report_preview\\report\\test_source_stateflow.py",
+  "iterations": 2,
+  "stop_reason": "quality_high",
+  "quality_status": "quality_high",
+  "pytest_passed": true,
+  "collected_count": 6,
+  "effective_mutants": 2,
+  "effective_assertions": 6,
+  "assertion_count": 6,
+  "paper_metrics": {
+    "line_coverage": 1.0,
+    "branch_coverage": 1.0,
+    "ae": 0.9,
+    "mutation_score": 0.5,
+    "pass_rate": 1.0,
+    "tir": 1.0,
+    "tir_comparable": 1,
+    "tir_improved": 1,
+    "exec_count": 9,
+    "avg_exec": null,
+    "duration_seconds": 75.8353
+  },
+  "llm": {
+    "model": "deepseek-r1:14b"
+  }
+}
