@@ -247,7 +247,10 @@ def serve(settings: Settings, open_browser: bool = False) -> None:
     if open_browser:
         import webbrowser
 
-        webbrowser.open(url, new=2)
+        try:
+            webbrowser.open(url, new=2)
+        except Exception:  # 浏览器不存在或无桌面会话时不影响服务
+            print("[提示] 无法自动打开浏览器，请手动访问上面的地址")
     try:
         server.serve_forever()
     except KeyboardInterrupt:

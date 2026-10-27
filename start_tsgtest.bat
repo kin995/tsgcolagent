@@ -24,5 +24,7 @@ if not defined PY (
 )
 
 echo Interpreter: %PY%
-%PY% -m tsgtest serve --port 8770 --open
+set "PROVIDER_ARG="
+if defined TSGTEST_PROVIDER set "PROVIDER_ARG=--provider %TSGTEST_PROVIDER%"
+%PY% -m tsgtest serve --port 8770 --open %PROVIDER_ARG% %*
 pause
