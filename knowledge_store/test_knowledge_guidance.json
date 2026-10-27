@@ -12448,6 +12448,599 @@
         "Reason: mutation_evidence_limited. Cause: The runnable test suite is usable but still below a quality target. Solution: Optimize only the weak dimension reported by evaluation and keep passing tests unchanged.",
         "Reason: optimization_gain. Cause: The selected optimization improved the quality score. Solution: Reuse this focus for similar tasks when the same gap is dominant."
       ]
+    },
+    {
+      "timestamp": 1793076206.5264869,
+      "source": "<REPO>\\examples\\sample_python\\inventory.py",
+      "model": "deepseek-chat",
+      "project_version": "pteg-agent-v3",
+      "prompt_version": "unknown",
+      "schema_version": "unknown",
+      "agent": "Stop",
+      "dominant_gap": "coverage",
+      "gaps": {
+        "coverage": 0.0,
+        "mutation": 0.0,
+        "assertion": 0.0,
+        "exception": 0.0,
+        "runtime_type": 0.0
+      },
+      "task_features": {
+        "node_count": 309,
+        "function_count": 6,
+        "branch_count": 7,
+        "loop_count": 0,
+        "exception_count": 8,
+        "mutation_survivor_count": 30
+      },
+      "task_signature": {
+        "node_count": 309,
+        "function_count": 6,
+        "branch_count": 7,
+        "loop_count": 0,
+        "exception_count": 8,
+        "mutation_survivor_count": 30,
+        "language": "python",
+        "argument_types": [
+          "int",
+          "list[int]",
+          "str"
+        ],
+        "operators": [
+          "<",
+          "<=",
+          "=="
+        ],
+        "state_types": [
+          "Annotation",
+          "Assertion",
+          "Branch",
+          "Call",
+          "Class",
+          "Dependency",
+          "End",
+          "Exception",
+          "Execution",
+          "Function",
+          "Module",
+          "Mutation",
+          "Parameter",
+          "Raise",
+          "Return",
+          "ReturnType",
+          "RuntimeState",
+          "RuntimeType",
+          "TestCase"
+        ],
+        "target_terms": [
+          "KeyError",
+          "KeyError(name)",
+          "ValueError",
+          "ValueError('insufficient stock')",
+          "ValueError('name must not be empty')",
+          "ValueError('quantity must be positive')",
+          "add",
+          "low_stock",
+          "name not in self.items",
+          "normalize_name",
+          "not counts",
+          "not name",
+          "quantity <= 0",
+          "remove",
+          "self.items[name] < quantity",
+          "self.items[name] == 0",
+          "summarize",
+          "total"
+        ],
+        "complexity": "high"
+      },
+      "before": {
+        "pytest_passed": true,
+        "coverage_percent": 1.0,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "combined_coverage": 1.0,
+        "mutation_score": 0.875,
+        "sfc": 1.0,
+        "ae": 0.8684,
+        "sfq": 0.9671,
+        "tsq": 0.9671,
+        "pv": 1.0,
+        "nrr": 1.0,
+        "test_path": "<REPO>\\tsgtest_runs\\20261027-124055_inventory_5857\\test_inventory_stateflow.py",
+        "failure_category": "valid_baseline",
+        "failed_tests": [],
+        "coverage_valid": true,
+        "mutation_valid": true,
+        "quality_status": "quality_high",
+        "next_allowed_agents": [],
+        "collected_count": 18,
+        "timed_out": false,
+        "effective_mutants": 8,
+        "mutation_reliability": "screening",
+        "weak_assertions_only": false,
+        "exception_only": false,
+        "normal_behavior_tests": 13,
+        "assertion_count": 23,
+        "weak_assertions": 0,
+        "effective_assertions": 23,
+        "assertion_quality_explanation": "共 23 个断言，均为有效断言",
+        "sfc_components": {
+          "node_coverage": 0.9787234042553191,
+          "edge_coverage": 0.09090909090909091,
+          "path_coverage": 1.0,
+          "program_nodes": 47,
+          "visited_program_nodes": 46,
+          "program_edges": 33,
+          "visited_program_edges": 3,
+          "branch_like_nodes": 10,
+          "visited_branch_like_nodes": 10
+        },
+        "timeout_kind": null,
+        "timeout_reason": null,
+        "timeout_likely_location": null,
+        "timeout_should_repair": true,
+        "weak_quality_flags": [
+          "mutation_evidence_limited"
+        ],
+        "threshold_failures": {},
+        "failure_location": null,
+        "repair_failure_reason": null,
+        "evaluation_profile": "screening",
+        "mutation_complete": false,
+        "cache_hit": false,
+        "mutation_evidence": {
+          "killed": 7,
+          "survived": 1,
+          "timeout": 0,
+          "invalid": 0,
+          "infra_error": 0,
+          "equivalent": 0,
+          "total": 8,
+          "effective_mutants": 8,
+          "score_reliability": "screening",
+          "score": 0.875,
+          "killed_lines": [
+            26,
+            28,
+            31,
+            31,
+            33,
+            24,
+            24
+          ],
+          "survived_lines": [
+            36
+          ],
+          "timeout_lines": [],
+          "invalid_lines": [],
+          "infra_error_lines": [],
+          "equivalent_lines": [],
+          "details": [
+            "killed mutation at line 26",
+            "killed mutation at line 28",
+            "killed mutation at line 31",
+            "survived mutation at line 36",
+            "killed mutation at line 31",
+            "killed mutation at line 33",
+            "killed mutation at line 24",
+            "killed mutation at line 24"
+          ],
+          "candidate_count": 18,
+          "attempted_mutants": 8,
+          "low_sample_reason": "",
+          "autonomy_action": "",
+          "timeout_retries": 0,
+          "evaluation_profile": "screening",
+          "profile_limit": 8,
+          "selected_candidate_lines": [
+            26,
+            28,
+            31,
+            36,
+            31,
+            33,
+            24,
+            24
+          ],
+          "candidate_results": [
+            {
+              "id": 8,
+              "line": 26,
+              "status": "killed"
+            },
+            {
+              "id": 9,
+              "line": 28,
+              "status": "killed"
+            },
+            {
+              "id": 11,
+              "line": 31,
+              "status": "killed"
+            },
+            {
+              "id": 13,
+              "line": 36,
+              "status": "survived"
+            },
+            {
+              "id": 10,
+              "line": 31,
+              "status": "killed"
+            },
+            {
+              "id": 12,
+              "line": 33,
+              "status": "killed"
+            },
+            {
+              "id": 7,
+              "line": 24,
+              "status": "killed"
+            },
+            {
+              "id": 6,
+              "line": 24,
+              "status": "killed"
+            }
+          ],
+          "final_evaluation": false,
+          "cache_hit": false
+        },
+        "quality_assessment": {
+          "status": "quality_high",
+          "feasible": true,
+          "objective": "under executable test intent, maximize useful quality while controlling unnecessary test and iteration cost",
+          "dimensions": {
+            "coverage": {
+              "available": true,
+              "acceptable": true,
+              "high": true,
+              "line": 1.0,
+              "branch": 1.0,
+              "sfc": 1.0
+            },
+            "assertion": {
+              "available": true,
+              "acceptable": true,
+              "high": true,
+              "ae": 0.8684,
+              "effective_assertions": 23
+            },
+            "mutation": {
+              "available": false,
+              "acceptable": false,
+              "high": false,
+              "score": 0.875,
+              "effective_mutants": 8,
+              "reliability": "screening"
+            }
+          },
+          "evidence_confidence": 0.6667,
+          "assertion_signal_ratio": 1.0,
+          "acceptable_dimension_count": 2,
+          "high_dimension_count": 2,
+          "critical_weaknesses": [],
+          "rationale": [
+            "测试可编译/运行，包含正常行为和有效断言",
+            "2个可用核心质量维度达到可接受标准",
+            "可靠变异样本不足，等级不声称具有高变异检测证据"
+          ]
+        }
+      },
+      "after": {
+        "pytest_passed": true,
+        "coverage_percent": 1.0,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "combined_coverage": 1.0,
+        "mutation_score": 0.8333,
+        "sfc": 1.0,
+        "ae": 0.8684,
+        "sfq": 0.9403,
+        "tsq": 0.9403,
+        "pv": 1.0,
+        "nrr": 1.0,
+        "test_path": "<REPO>\\tsgtest_runs\\20261027-124055_inventory_5857\\test_inventory_stateflow.py",
+        "failure_category": "valid_baseline",
+        "failed_tests": [],
+        "coverage_valid": true,
+        "mutation_valid": true,
+        "quality_status": "quality_high",
+        "next_allowed_agents": [],
+        "collected_count": 18,
+        "timed_out": false,
+        "effective_mutants": 18,
+        "mutation_reliability": "normal",
+        "weak_assertions_only": false,
+        "exception_only": false,
+        "normal_behavior_tests": 13,
+        "assertion_count": 23,
+        "weak_assertions": 0,
+        "effective_assertions": 23,
+        "assertion_quality_explanation": "共 23 个断言，均为有效断言",
+        "sfc_components": {
+          "node_coverage": 0.9787234042553191,
+          "edge_coverage": 0.09090909090909091,
+          "path_coverage": 1.0,
+          "program_nodes": 47,
+          "visited_program_nodes": 46,
+          "program_edges": 33,
+          "visited_program_edges": 3,
+          "branch_like_nodes": 10,
+          "visited_branch_like_nodes": 10
+        },
+        "timeout_kind": null,
+        "timeout_reason": null,
+        "timeout_likely_location": null,
+        "timeout_should_repair": true,
+        "weak_quality_flags": [],
+        "threshold_failures": {},
+        "failure_location": null,
+        "repair_failure_reason": null,
+        "evaluation_profile": "full",
+        "mutation_complete": true,
+        "cache_hit": false,
+        "mutation_evidence": {
+          "killed": 15,
+          "survived": 3,
+          "timeout": 0,
+          "invalid": 0,
+          "infra_error": 0,
+          "equivalent": 0,
+          "total": 18,
+          "effective_mutants": 18,
+          "score_reliability": "normal",
+          "score": 0.8333,
+          "killed_lines": [
+            26,
+            28,
+            31,
+            31,
+            33,
+            24,
+            24,
+            16,
+            18,
+            20,
+            50,
+            20,
+            51,
+            51,
+            51
+          ],
+          "survived_lines": [
+            36,
+            13,
+            16
+          ],
+          "timeout_lines": [],
+          "invalid_lines": [],
+          "infra_error_lines": [],
+          "equivalent_lines": [],
+          "details": [
+            "reused killed mutation at line 26",
+            "killed mutation at line 26",
+            "reused killed mutation at line 28",
+            "killed mutation at line 28",
+            "reused killed mutation at line 31",
+            "killed mutation at line 31",
+            "reused survived mutation at line 36",
+            "survived mutation at line 36",
+            "reused killed mutation at line 31",
+            "killed mutation at line 31",
+            "reused killed mutation at line 33",
+            "killed mutation at line 33",
+            "reused killed mutation at line 24",
+            "killed mutation at line 24",
+            "reused killed mutation at line 24",
+            "killed mutation at line 24",
+            "killed mutation at line 16",
+            "killed mutation at line 18",
+            "killed mutation at line 20",
+            "killed mutation at line 50",
+            "survived mutation at line 13",
+            "survived mutation at line 16",
+            "killed mutation at line 20",
+            "killed mutation at line 51",
+            "killed mutation at line 51",
+            "killed mutation at line 51"
+          ],
+          "candidate_count": 18,
+          "attempted_mutants": 18,
+          "low_sample_reason": "",
+          "autonomy_action": "",
+          "timeout_retries": 0,
+          "evaluation_profile": "full",
+          "profile_limit": 20,
+          "selected_candidate_lines": [
+            26,
+            28,
+            31,
+            36,
+            31,
+            33,
+            24,
+            24,
+            16,
+            18,
+            20,
+            50,
+            13,
+            16,
+            20,
+            51,
+            51,
+            51
+          ],
+          "candidate_results": [
+            {
+              "id": 8,
+              "line": 26,
+              "status": "killed"
+            },
+            {
+              "id": 9,
+              "line": 28,
+              "status": "killed"
+            },
+            {
+              "id": 11,
+              "line": 31,
+              "status": "killed"
+            },
+            {
+              "id": 13,
+              "line": 36,
+              "status": "survived"
+            },
+            {
+              "id": 10,
+              "line": 31,
+              "status": "killed"
+            },
+            {
+              "id": 12,
+              "line": 33,
+              "status": "killed"
+            },
+            {
+              "id": 7,
+              "line": 24,
+              "status": "killed"
+            },
+            {
+              "id": 6,
+              "line": 24,
+              "status": "killed"
+            },
+            {
+              "id": 2,
+              "line": 16,
+              "status": "killed"
+            },
+            {
+              "id": 3,
+              "line": 18,
+              "status": "killed"
+            },
+            {
+              "id": 5,
+              "line": 20,
+              "status": "killed"
+            },
+            {
+              "id": 14,
+              "line": 50,
+              "status": "killed"
+            },
+            {
+              "id": 0,
+              "line": 13,
+              "status": "survived"
+            },
+            {
+              "id": 1,
+              "line": 16,
+              "status": "survived"
+            },
+            {
+              "id": 4,
+              "line": 20,
+              "status": "killed"
+            },
+            {
+              "id": 15,
+              "line": 51,
+              "status": "killed"
+            },
+            {
+              "id": 16,
+              "line": 51,
+              "status": "killed"
+            },
+            {
+              "id": 17,
+              "line": 51,
+              "status": "killed"
+            }
+          ],
+          "final_evaluation": true,
+          "cache_hit": false
+        },
+        "quality_assessment": {
+          "status": "quality_high",
+          "feasible": true,
+          "objective": "under executable test intent, maximize useful quality while controlling unnecessary test and iteration cost",
+          "dimensions": {
+            "coverage": {
+              "available": true,
+              "acceptable": true,
+              "high": true,
+              "line": 1.0,
+              "branch": 1.0,
+              "sfc": 1.0
+            },
+            "assertion": {
+              "available": true,
+              "acceptable": true,
+              "high": true,
+              "ae": 0.8684,
+              "effective_assertions": 23
+            },
+            "mutation": {
+              "available": true,
+              "acceptable": true,
+              "high": true,
+              "score": 0.8333,
+              "effective_mutants": 18,
+              "reliability": "normal"
+            }
+          },
+          "evidence_confidence": 1.0,
+          "assertion_signal_ratio": 1.0,
+          "acceptable_dimension_count": 3,
+          "high_dimension_count": 3,
+          "critical_weaknesses": [],
+          "rationale": [
+            "测试可编译/运行，包含正常行为和有效断言",
+            "3个可用核心质量维度达到可接受标准"
+          ]
+        }
+      },
+      "delta_sfq": -0.0268,
+      "runtime_seconds": 29.2662,
+      "llm_calls": 1,
+      "token_count": 6599,
+      "expected_reward": 0.0,
+      "actual_reward": -0.0125,
+      "reward_prediction_error": -0.0125,
+      "outcome": "negative",
+      "reward": -0.0125,
+      "learning_notes": [
+        {
+          "lesson_type": "optimization",
+          "reason_type": "negative_quality_delta",
+          "cause": "The optimization reduced quality after accounting for metric gain and cost.",
+          "solution": "Prefer a smaller repair scope and keep already passing, unrelated test cases unchanged.",
+          "reminder": "Reason: negative_quality_delta. Cause: The optimization reduced quality after accounting for metric gain and cost. Solution: Prefer a smaller repair scope and keep already passing, unrelated test cases unchanged.",
+          "evidence": {
+            "agent": "Stop",
+            "gaps": {
+              "coverage": 0.0,
+              "mutation": 0.0,
+              "assertion": 0.0,
+              "exception": 0.0,
+              "runtime_type": 0.0
+            },
+            "reward": -0.0125
+          }
+        }
+      ],
+      "prompt_reminders": [
+        "Reason: negative_quality_delta. Cause: The optimization reduced quality after accounting for metric gain and cost. Solution: Prefer a smaller repair scope and keep already passing, unrelated test cases unchanged."
+      ]
     }
   ]
 }
