@@ -22,7 +22,8 @@ testpaths = ["tests"]
 pythonpath = ["."]
 
 [tool.setuptools]
-py-modules = ["llm_client", "llm_config"]
+py-modules = ["main", "run_agent", "run_all_datasets", "batch_generate_tests",
+              "llm_client", "llm_config"]
 
 [tool.setuptools.packages.find]
 include = [
