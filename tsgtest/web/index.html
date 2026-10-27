@@ -73,16 +73,37 @@
 
       <h2>历史任务</h2>
       <ul id="history" class="history"><li class="muted">暂无任务</li></ul>
+
+      <h2>本地运行</h2>
+      <ul id="runs" class="history"><li class="muted">加载中…</li></ul>
     </section>
 
     <section class="panel result-panel">
       <div class="result-head">
         <h2>3. 结果</h2>
-        <span id="job-status" class="badge idle">空闲</span>
+        <div class="head-actions">
+          <button id="cancel-btn" class="ghost small" type="button" hidden>取消任务</button>
+          <span id="job-status" class="badge idle">空闲</span>
+        </div>
       </div>
       <p id="job-meta" class="muted"></p>
 
       <div id="metrics" class="metrics" hidden></div>
+
+      <div id="llm-block" class="metrics" hidden></div>
+
+      <div id="rounds-block" hidden>
+        <h3>轮次对比</h3>
+        <table class="rounds">
+          <thead><tr><th>轮次</th><th>通过</th><th>LC</th><th>BC</th><th>AE</th><th>MS</th><th>用例</th></tr></thead>
+          <tbody id="rounds-body"></tbody>
+        </table>
+      </div>
+
+      <div id="export-block" class="test-actions" hidden>
+        <button id="export-md" class="ghost small" type="button">导出 Markdown</button>
+        <button id="export-html" class="ghost small" type="button">导出 HTML 报告</button>
+      </div>
 
       <div id="test-block" hidden>
         <div class="test-head">

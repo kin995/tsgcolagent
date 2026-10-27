@@ -2,7 +2,7 @@
   "use strict";
 
   const $ = (id) => document.getElementById(id);
-  const state = { jobId: null, job: null, items: [], active: 0, timer: null, browsePath: null, root: "" };
+  const state = { jobId: null, job: null, items: [], active: 0, timer: null, browsePath: null, root: "", runName: null };
 
   const pct = (v) => (v === null || v === undefined || Number.isNaN(Number(v)) ? "—" : (Number(v) * 100).toFixed(1) + "%");
   const num = (v, digits = 2) => (v === null || v === undefined ? "—" : Number(v).toFixed(digits));
@@ -44,11 +44,15 @@
     }
     await loadModels();
     await loadHistory();
+    await loadRuns();
   }
 
   function bind() {
     $("start-btn").addEventListener("click", start);
     $("demo-btn").addEventListener("click", loadDemo);
+    $("cancel-btn").addEventListener("click", cancelJob);
+    $("export-md").addEventListener("click", () => exportReport("markdown"));
+    $("export-html").addEventListener("click", () => exportReport("html"));
     $("refresh-models").addEventListener("click", loadModels);
     $("provider").addEventListener("change", () => {
       if ($("provider").value === "openai") {
@@ -176,7 +180,13 @@
       if (job.status === "queued" || job.status === "running") schedulePoll();
       else {
         $("start-btn").disabled = false;
+        $("cancel-btn").hidden = true;
         loadHistory();
+        loadRuns();
+        if (job.status === "done" && job.out_dir) {
+          const parts = String(job.out_dir).split(/[\\/]/).filter(Boolean);
+          loadRun(parts[parts.length - 1]);
+        }
       }
     } catch (err) {
       schedulePoll();
@@ -189,6 +199,7 @@
     const labels = { queued: "排队中", running: "生成中", done: "已完成", failed: "失败", cancelled: "已取消" };
     badge.textContent = labels[job.status] || job.status;
     badge.className = "badge " + job.status;
+    $("cancel-btn").hidden = !(job.status === "queued" || job.status === "running");
     const elapsed = job.started_at ? Math.max(0, (Date.now() - new Date(job.started_at).getTime()) / 1000) : 0;
     $("job-meta").textContent = `${job.source}  →  ${job.out_dir}` + (job.status === "running" ? `  ·  ${elapsed.toFixed(0)}s` : "");
     $("job-log").textContent = (job.log || []).join("\n");
@@ -198,7 +209,16 @@
       error.textContent = job.error || "任务失败";
       error.hidden = false;
     }
-    if (job.result && job.status === "done") renderResult(job.result);
+    if (job.result && job.status === "done") {
+      renderResult(job.result);
+      if (job.out_dir) {
+        const parts = String(job.out_dir).split(/[\\/]/).filter(Boolean);
+        state.runName = parts[parts.length - 1] || null;
+        $("export-block").hidden = !state.runName;
+        $("rounds-block").hidden = true;
+        $("llm-block").hidden = false;
+      }
+    }
   }
 
   function renderResult(result) {
@@ -293,6 +313,96 @@
       error.textContent = "示例加载失败：" + err.message;
       error.hidden = false;
     }
+  }
+
+  // ---------- 本地运行 ----------
+  async function loadRuns() {
+    try {
+      const data = await fetchJSON("/api/runs");
+      const list = $("runs");
+      list.innerHTML = "";
+      if (!data.runs || data.runs.length === 0) {
+        list.innerHTML = '<li class="muted">暂无本地运行</li>';
+        return;
+      }
+      for (const run of data.runs.slice(0, 20)) {
+        const li = document.createElement("li");
+        const label = (run.source || "").split(/[\\/]/).filter(Boolean).pop() || run.name;
+        const stateLabel = run.status || run.quality || "";
+        li.innerHTML = `<span class="name">${esc(label)}</span><span class="state">${esc(pct(run.line_coverage))} · ${esc(stateLabel)}</span>`;
+        li.title = `${run.name} · ${run.created_at || ""}`;
+        li.addEventListener("click", () => loadRun(run.name));
+        list.appendChild(li);
+      }
+    } catch (err) {
+      $("runs").innerHTML = '<li class="muted">读取失败</li>';
+    }
+  }
+
+  async function loadRun(name) {
+    try {
+      const run = await fetchJSON("/api/runs/" + encodeURIComponent(name));
+      state.runName = name;
+      state.jobId = null;
+      state.items = [{ source: run.source, test_text: run.test_text, metrics: run.metrics }];
+      state.active = 0;
+      const badge = $("job-status");
+      badge.textContent = "历史运行";
+      badge.className = "badge done";
+      $("cancel-btn").hidden = true;
+      $("job-meta").textContent = `${run.source || ""}  →  ${run.status || ""}${run.stop_reason ? "（" + run.stop_reason + "）" : ""}`;
+      renderMetrics();
+      renderCode();
+      renderRounds(run.rounds || []);
+      renderLlm(run.llm || {});
+      $("export-block").hidden = false;
+      $("job-log").textContent = run.error || "历史运行：无实时日志，可查看轮次与指标。";
+    } catch (err) {
+      const error = $("form-error");
+      error.textContent = "加载运行失败：" + err.message;
+      error.hidden = false;
+    }
+  }
+
+  function renderRounds(rounds) {
+    const body = $("rounds-body");
+    body.innerHTML = "";
+    for (const item of rounds) {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td>${item.round ?? ""}</td><td>${item.passed ?? ""}</td>` +
+        `<td>${pct(item.line_coverage)}</td><td>${pct(item.branch_coverage)}</td>` +
+        `<td>${pct(item.ae)}</td><td>${pct(item.mutation_score)}</td><td>${item.tests ?? ""}</td>`;
+      body.appendChild(tr);
+    }
+    $("rounds-block").hidden = rounds.length === 0;
+  }
+
+  function renderLlm(llm) {
+    const seconds = llm.duration_seconds;
+    const cells = [
+      ["AI 调用", llm.calls ?? "—"],
+      ["输入 tokens", llm.prompt_tokens ?? "—"],
+      ["输出 tokens", llm.completion_tokens ?? "—"],
+      ["模型耗时", seconds == null ? "—" : Number(seconds).toFixed(1) + "s"],
+    ];
+    $("llm-block").innerHTML = cells
+      .map(([key, value]) => `<div class="metric"><div class="k">${esc(key)}</div><div class="v">${esc(value)}</div></div>`)
+      .join("");
+    $("llm-block").hidden = false;
+  }
+
+  async function cancelJob() {
+    if (!state.jobId) return;
+    try {
+      await fetchJSON("/api/jobs/" + state.jobId + "/cancel", { method: "POST" });
+    } catch (err) {
+      /* 忽略取消失败 */
+    }
+  }
+
+  function exportReport(format) {
+    if (!state.runName) return;
+    window.location = `/api/runs/${encodeURIComponent(state.runName)}/report?format=${format}`;
   }
 
   // ---------- 历史 ----------

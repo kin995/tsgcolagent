@@ -9,7 +9,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, unquote, urlparse
 
-from . import __version__
+from . import __version__, history
 from .config import Settings
 from .engine import SOURCE_SUFFIXES, api_key, available_models, dependency_status, resolve_base_url, resolve_model
 from .jobs import JobManager
@@ -17,6 +17,7 @@ from .jobs import JobManager
 WEB_DIR = Path(__file__).resolve().parent / "web"
 ROOT = Path(__file__).resolve().parents[1]
 JOB_PATH = re.compile(r"^/api/jobs/([0-9a-f]{6,32})(?:/(test|cancel|summary))?$")
+RUN_PATH = re.compile(r"^/api/runs/([^/]+)(?:/(test|report|artifact))?$")
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -62,6 +63,11 @@ class Handler(BaseHTTPRequestHandler):
             return self._demo()
         if route == "/api/jobs":
             return self._json({"jobs": self.manager.list()})
+        if route == "/api/runs":
+            return self._json({"runs": history.list_runs(self.settings.runs_dir)})
+        run_match = RUN_PATH.match(route)
+        if run_match:
+            return self._run_get(unquote(run_match.group(1)), run_match.group(2), query)
         match = JOB_PATH.match(route)
         if match:
             return self._job_get(match.group(1), match.group(2))
@@ -195,6 +201,43 @@ class Handler(BaseHTTPRequestHandler):
             if not collected:
                 return self._error("测试文件不在任务目录内", HTTPStatus.FORBIDDEN)
             return self._json({"files": collected})
+        return self._error("未知接口", HTTPStatus.NOT_FOUND)
+
+    def _run_get(self, name: str, action: str | None, query: dict[str, list[str]]) -> None:
+        run = history.load_run(self.settings.runs_dir, name)
+        if run is None:
+            return self._error("运行不存在", HTTPStatus.NOT_FOUND)
+        if action is None:
+            return self._json(run)
+        if action == "test":
+            return self._json({"name": name, "text": run.get("test_text") or ""})
+        if action == "report":
+            fmt = (query.get("format") or ["markdown"])[0].lower()
+            if fmt in {"html", "htm"}:
+                body = history.render_html(run).encode("utf-8")
+                content_type, filename = "text/html; charset=utf-8", f"{name}.html"
+            else:
+                body = history.render_markdown(run).encode("utf-8")
+                content_type, filename = "text/markdown; charset=utf-8", f"{name}.md"
+            self.send_response(HTTPStatus.OK)
+            self.send_header("Content-Type", content_type)
+            self.send_header("Content-Length", str(len(body)))
+            self.send_header("Content-Disposition", f'attachment; filename="{filename}"')
+            self.end_headers()
+            self.wfile.write(body)
+            return
+        if action == "artifact":
+            requested = (query.get("file") or [""])[0]
+            if requested not in (run.get("artifacts") or []):
+                return self._error("文件不在运行目录内", HTTPStatus.FORBIDDEN)
+            folder = history.resolve_run(self.settings.runs_dir, name)
+            target = folder / requested if folder else None
+            if target is None or not target.is_file():
+                return self._error("文件不存在", HTTPStatus.NOT_FOUND)
+            content_type = mimetypes.guess_type(target.name)[0] or "application/octet-stream"
+            if content_type.startswith("text/") or content_type == "image/svg+xml":
+                content_type += "; charset=utf-8"
+            return self._text(target.read_bytes(), content_type)
         return self._error("未知接口", HTTPStatus.NOT_FOUND)
 
     # ---------- 工具 ----------

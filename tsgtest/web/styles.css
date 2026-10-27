@@ -201,3 +201,8 @@ button:disabled { opacity: .55; cursor: not-allowed; }
 
 /* hidden 属性优先，避免被 display:grid 覆盖 */
 [hidden] { display: none !important; }
+.head-actions { display: flex; gap: 8px; align-items: center; }
+table.rounds { width: 100%; border-collapse: collapse; font-size: 12px; margin: 8px 0 6px; }
+table.rounds th, table.rounds td { border: 1px solid var(--line); padding: 5px 8px; text-align: left; }
+table.rounds th { background: #eef3fa; font-weight: 600; }
+#export-block { margin: 8px 0 4px; }
