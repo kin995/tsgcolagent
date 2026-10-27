@@ -21,6 +21,9 @@ tsgtest = "tsgtest.cli:main"
 testpaths = ["tests"]
 pythonpath = ["."]
 
+[tool.setuptools]
+py-modules = ["llm_client", "llm_config"]
+
 [tool.setuptools.packages.find]
 include = [
     "agents*",
