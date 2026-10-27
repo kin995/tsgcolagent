@@ -34,13 +34,21 @@
 ### 1. 环境
 
 - Python 3.11+
-- [Ollama](https://ollama.com/)（本地模型服务）
+- 任选一种模型服务：
+  - [Ollama](https://ollama.com/)（本地）
+  - 任意 OpenAI 兼容 API（DeepSeek、硅基流动、vLLM 等）
 - Java 任务另需 JDK 11+ 与 Maven 3.8+
 
 ```bash
 pip install -r requirements.txt
+
+# A. 本地 Ollama
 ollama serve
 ollama pull deepseek-r1:14b
+
+# B. 或 OpenAI 兼容 API（不用装 Ollama）
+export DEEPSEEK_API_KEY=sk-...          # Windows: set DEEPSEEK_API_KEY=sk-...
+python -m tsgtest serve --provider openai --model deepseek-chat --open
 ```
 
 ### 1'. Docker 一键启动（评审推荐）
