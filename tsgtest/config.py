@@ -14,7 +14,9 @@ class Settings:
     host: str = "127.0.0.1"
     port: int = 8770
     runs_dir: Path = field(default_factory=lambda: Path("tsgtest_runs"))
+    provider: str = "ollama"           # ollama | openai
     ollama_base_url: str = "http://127.0.0.1:11434"
+    api_key: str = ""
     model: str = "deepseek-r1:14b"
     temperature: float = 0.5
     max_rounds: int = 3
@@ -27,6 +29,7 @@ class Settings:
             "host": self.host,
             "port": self.port,
             "runs_dir": str(self.runs_dir),
+            "provider": self.provider,
             "ollama_base_url": self.ollama_base_url,
             "model": self.model,
             "temperature": self.temperature,
@@ -64,7 +67,8 @@ def load_settings(root: Path, config_path: Path | None = None) -> Settings:
     overrides = {
         "host": _env("HOST"),
         "port": _env("PORT"),
-        "ollama_base_url": _env("OLLAMA_BASE_URL"),
+        "provider": _env("PROVIDER"),
+        "ollama_base_url": _env("BASE_URL") or _env("OLLAMA_BASE_URL"),
         "model": _env("MODEL"),
         "temperature": _env("TEMPERATURE"),
         "max_rounds": _env("MAX_ROUNDS"),

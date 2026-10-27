@@ -7,7 +7,8 @@ import sys
 from pathlib import Path
 
 from .config import load_settings
-from .engine import collect_sources, dependency_status, ollama_models, run_source, write_job_record
+from .engine import (api_key, available_models, collect_sources, dependency_status, resolve_base_url,
+                     resolve_model, run_source, write_job_record)
 from .server import serve
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -22,14 +23,17 @@ def build_parser() -> argparse.ArgumentParser:
     serve_cmd.add_argument("--host", default=None)
     serve_cmd.add_argument("--port", type=int, default=None)
     serve_cmd.add_argument("--open", action="store_true", help="启动后自动打开浏览器")
+    serve_cmd.add_argument("--provider", choices=["ollama", "openai"], default=None)
     serve_cmd.add_argument("--config", default=None)
 
-    check = sub.add_parser("check", help="检查依赖、Ollama 与 Java 工具链")
+    check = sub.add_parser("check", help="检查依赖、模型服务与 Java 工具链")
     check.add_argument("--base-url", default=None)
+    check.add_argument("--provider", choices=["ollama", "openai"], default=None)
 
     gen = sub.add_parser("gen", help="命令行直接生成（不起前端）")
     gen.add_argument("source")
     gen.add_argument("-o", "--out", default=None)
+    gen.add_argument("--provider", choices=["ollama", "openai"], default=None)
     gen.add_argument("--model", default=None)
     gen.add_argument("--base-url", default=None)
     gen.add_argument("--rounds", type=int, default=None)
@@ -45,6 +49,8 @@ def main(argv: list[str] | None = None) -> int:
     settings = load_settings(ROOT, Path(args.config) if getattr(args, "config", None) else None)
 
     if command == "serve":
+        if getattr(args, "provider", None):
+            settings.provider = args.provider
         for attr in ("host", "port"):
             value = getattr(args, attr, None)
             if value is not None:
@@ -53,10 +59,17 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     if command == "check":
+        if getattr(args, "provider", None):
+            settings.provider = args.provider
         deps = dependency_status()
-        base_url = args.base_url or settings.ollama_base_url
-        models, error = ollama_models(base_url)
-        print(f"Ollama（{base_url}）：" + ("不可达：" + error if error else f"{len(models)} 个模型"))
+        if args.base_url:
+            settings.ollama_base_url = args.base_url
+        models, error = available_models(settings)
+        model = resolve_model(settings)
+        print(f"服务：{settings.provider}  地址：{resolve_base_url(settings)}  模型：{model}")
+        if settings.provider == "openai":
+            print("API key：" + ("已配置" if api_key(settings) else "缺失（写入 参赛材料/env/api_key.txt）"))
+        print("模型列表：" + ("不可达：" + error if error else f"{len(models)} 个"))
         for name in models:
             print(f"  - {name}")
         print("依赖：")
@@ -70,7 +83,8 @@ def main(argv: list[str] | None = None) -> int:
         if not source.exists():
             print(f"路径不存在：{source}", file=sys.stderr)
             return 1
-        for attr, key in (("model", "model"), ("base_url", "ollama_base_url"), ("rounds", "max_rounds"), ("temperature", "temperature")):
+        for attr, key in (("provider", "provider"), ("model", "model"), ("base_url", "ollama_base_url"),
+                          ("rounds", "max_rounds"), ("temperature", "temperature")):
             value = getattr(args, attr, None)
             if value is not None:
                 setattr(settings, key, value)

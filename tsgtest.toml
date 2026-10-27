@@ -3,6 +3,7 @@
 host = "127.0.0.1"
 port = 8770
 runs_dir = "tsgtest_runs"
+provider = "ollama"          # ollama | openai
 ollama_base_url = "http://127.0.0.1:11434"
 model = "deepseek-r1:14b"
 temperature = 0.5

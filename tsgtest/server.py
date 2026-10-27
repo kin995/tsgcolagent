@@ -11,7 +11,7 @@ from urllib.parse import parse_qs, unquote, urlparse
 
 from . import __version__
 from .config import Settings
-from .engine import SOURCE_SUFFIXES, dependency_status, ollama_models
+from .engine import SOURCE_SUFFIXES, api_key, available_models, dependency_status, resolve_base_url, resolve_model
 from .jobs import JobManager
 
 WEB_DIR = Path(__file__).resolve().parent / "web"
@@ -87,7 +87,11 @@ class Handler(BaseHTTPRequestHandler):
             "ok": True,
             "version": __version__,
             "dependencies": dependency_status(),
-            "ollama_base_url": self.settings.ollama_base_url,
+            "provider": self.settings.provider,
+            "has_api_key": bool(api_key(self.settings)),
+            "model": resolve_model(self.settings),
+            "root": str(ROOT),
+            "ollama_base_url": resolve_base_url(self.settings),
             "runs_dir": str(self.settings.runs_dir),
         })
 
@@ -102,8 +106,8 @@ class Handler(BaseHTTPRequestHandler):
 
     def _models(self, query: dict[str, list[str]]) -> None:
         base_url = (query.get("base_url") or [self.settings.ollama_base_url])[0]
-        models, error = ollama_models(base_url)
-        self._json({"models": models, "error": error, "base_url": base_url})
+        models, error = available_models(self.settings)
+        self._json({"models": models, "error": error, "base_url": base_url, "provider": self.settings.provider})
 
     def _browse(self, query: dict[str, list[str]]) -> None:
         raw = (query.get("path") or [""])[0]
@@ -137,6 +141,11 @@ class Handler(BaseHTTPRequestHandler):
         if not source:
             return self._error("缺少 source（源文件或目录）", HTTPStatus.BAD_REQUEST)
         overrides: dict[str, object] = {}
+        provider = str(payload.get("provider") or "").strip().lower()
+        if provider:
+            if provider not in {"ollama", "openai"}:
+                return self._error("provider 只支持 ollama 或 openai", HTTPStatus.BAD_REQUEST)
+            overrides["provider"] = provider
         for key in ("model", "ollama_base_url"):
             value = payload.get(key)
             if isinstance(value, str) and value.strip():

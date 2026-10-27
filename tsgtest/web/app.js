@@ -2,7 +2,7 @@
   "use strict";
 
   const $ = (id) => document.getElementById(id);
-  const state = { jobId: null, job: null, items: [], active: 0, timer: null, browsePath: null };
+  const state = { jobId: null, job: null, items: [], active: 0, timer: null, browsePath: null, root: "" };
 
   const pct = (v) => (v === null || v === undefined || Number.isNaN(Number(v)) ? "—" : (Number(v) * 100).toFixed(1) + "%");
   const num = (v, digits = 2) => (v === null || v === undefined ? "—" : Number(v).toFixed(digits));
@@ -33,6 +33,12 @@
         $("dep-pill").title = "未安装：" + missing.join(", ") + "（pip install -r requirements.txt）";
       }
       $("base-url").value = health.ollama_base_url || "";
+      state.root = health.root || "";
+      if (health.provider) $("provider").value = health.provider;
+      if (health.provider === "openai" && health.has_api_key === false) {
+        setPill($("ollama-pill"), "API 已选 · 缺少 key", "warn");
+        $("ollama-pill").title = "把 key 写入 参赛材料/env/api_key.txt，或设置 DEEPSEEK_API_KEY";
+      }
     } catch (err) {
       setPill($("dep-pill"), "服务异常", "bad");
     }
@@ -44,7 +50,20 @@
     $("start-btn").addEventListener("click", start);
     $("demo-btn").addEventListener("click", loadDemo);
     $("refresh-models").addEventListener("click", loadModels);
+    $("provider").addEventListener("change", () => {
+      if ($("provider").value === "openai") {
+        $("base-url").value = "https://api.deepseek.com";
+      } else {
+        $("base-url").value = "http://127.0.0.1:11434";
+      }
+      loadModels();
+    });
     $("browse-btn").addEventListener("click", () => openBrowse($("source").value.trim() || null));
+    $("sample-btn").addEventListener("click", () => {
+      if (!state.root) return;
+      $("source").value = state.root + "\\examples\\sample_python\\inventory.py";
+      $("rounds").value = "1";
+    });
     $("browse-close").addEventListener("click", () => $("browse-modal").hidden = true);
     $("browse-up").addEventListener("click", () => openBrowse(state.browsePath ? dirname(state.browsePath) : null));
     $("browse-home").addEventListener("click", () => openBrowse(null));
@@ -60,30 +79,46 @@
   }
 
   // ---------- 模型 ----------
+  function fillModels(names, selected) {
+    const select = $("model");
+    select.innerHTML = "";
+    if (!names || names.length === 0) {
+      const option = document.createElement("option");
+      option.value = "";
+      option.textContent = "（未发现模型）";
+      select.appendChild(option);
+      return;
+    }
+    for (const name of names) {
+      const option = document.createElement("option");
+      option.value = name;
+      option.textContent = name;
+      select.appendChild(option);
+    }
+    if (selected && names.includes(selected)) select.value = selected;
+  }
+
   async function loadModels() {
+    const provider = $("provider").value;
+    if (provider === "openai") {
+      if (!$("base-url").value.trim() || $("base-url").value.includes("11434")) {
+        $("base-url").value = "https://api.deepseek.com";
+      }
+      fillModels(["deepseek-chat", "deepseek-reasoner"], "deepseek-chat");
+      setPill($("ollama-pill"), "API 模式 · DeepSeek", "ok");
+      $("ollama-pill").title = "key 从 参赛材料/env/api_key.txt 或 DEEPSEEK_API_KEY 读取";
+      return;
+    }
     setPill($("ollama-pill"), "Ollama 检测中…", "");
     try {
       const base = $("base-url").value.trim();
       const data = await fetchJSON("/api/models" + (base ? "?base_url=" + encodeURIComponent(base) : ""));
-      const select = $("model");
-      const current = select.value;
-      select.innerHTML = "";
+      fillModels(data.models, $("model").value);
       if (!data.models || data.models.length === 0) {
-        const option = document.createElement("option");
-        option.value = "";
-        option.textContent = "（未发现模型）";
-        select.appendChild(option);
         setPill($("ollama-pill"), "Ollama 未连接", "bad");
         $("ollama-pill").title = data.error || "请先启动 ollama serve 并 ollama pull 模型";
         return;
       }
-      for (const name of data.models) {
-        const option = document.createElement("option");
-        option.value = name;
-        option.textContent = name;
-        select.appendChild(option);
-      }
-      if (data.models.includes(current)) select.value = current;
       setPill($("ollama-pill"), `Ollama · ${data.models.length} 个模型`, "ok");
     } catch (err) {
       setPill($("ollama-pill"), "Ollama 未连接", "bad");
@@ -107,6 +142,7 @@
     try {
       const payload = {
         source,
+        provider: $("provider").value,
         model: $("model").value || undefined,
         ollama_base_url: $("base-url").value.trim() || undefined,
         temperature: Number($("temperature").value),

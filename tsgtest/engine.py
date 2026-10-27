@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
 import shutil
 import time
 import urllib.error
@@ -58,16 +59,71 @@ def ollama_models(base_url: str, timeout: float = 4.0) -> tuple[list[str], str |
     return sorted(names), None
 
 
+DEFAULT_OPENAI_BASE = "https://api.deepseek.com"
+DEFAULT_OPENAI_MODEL = "deepseek-chat"
+_MATERIALS = Path(__file__).resolve().parents[2]
+KEY_FILES = (_MATERIALS / "env" / "api_key.txt", _MATERIALS / "api_key.txt")
+
+
+def api_key(settings: Settings) -> str:
+    """key 优先级：配置 → 环境变量 → 参赛材料/env/api_key.txt。"""
+    if settings.api_key.strip():
+        return settings.api_key.strip()
+    for name in ("DEEPSEEK_API_KEY", "OPENAI_API_KEY"):
+        value = os.environ.get(name, "").strip()
+        if value:
+            return value
+    for key_file in KEY_FILES:
+        if not key_file.is_file():
+            continue
+        try:
+            lines = key_file.read_text(encoding="utf-8-sig").splitlines()
+        except OSError:
+            continue
+        for line in lines:
+            line = line.strip()
+            if line and not line.startswith("#"):
+                return line
+    return ""
+
+
+def resolve_base_url(settings: Settings) -> str:
+    base = (settings.ollama_base_url or "").strip()
+    if settings.provider == "openai":
+        if not base or "11434" in base:
+            return DEFAULT_OPENAI_BASE
+    return base or "http://127.0.0.1:11434"
+
+
+def resolve_model(settings: Settings) -> str:
+    model = (settings.model or "").strip()
+    if settings.provider == "openai" and (not model or model.startswith("deepseek-r1")):
+        return DEFAULT_OPENAI_MODEL
+    return model
+
+
+def available_models(settings: Settings) -> tuple[list[str], str | None]:
+    if settings.provider == "openai":
+        return ["deepseek-chat", "deepseek-reasoner"], None
+    return ollama_models(settings.ollama_base_url)
+
+
 def _build_llm_config(settings: Settings):
     from llm_config import LLMConfig
 
+    key = api_key(settings)
+    if settings.provider == "openai" and not key:
+        raise RuntimeError(
+            "未配置 API key：请把 key 写入 参赛材料/env/api_key.txt，"
+            "或设置环境变量 DEEPSEEK_API_KEY。"
+        )
     return LLMConfig(
         enabled=True,
         required=True,
-        provider="ollama",
-        base_url=settings.ollama_base_url,
-        model=settings.model,
-        api_key="local",
+        provider=settings.provider,
+        base_url=resolve_base_url(settings),
+        model=resolve_model(settings),
+        api_key="local" if settings.provider == "ollama" else key,
         timeout=settings.request_timeout,
         temperature=settings.temperature,
     )
