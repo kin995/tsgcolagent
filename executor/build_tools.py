@@ -6,11 +6,6 @@ from dataclasses import dataclass, asdict
 from pathlib import Path
 
 
-DEFAULT_EXTERNAL_MAVEN_HOMES = [
-    Path(r"D:\wn\mavenEvo\apache-maven-3.9.1"),
-]
-
-
 @dataclass(frozen=True)
 class BuildToolResolution:
     command: str | None
@@ -42,22 +37,6 @@ def resolve_maven_command(project_root: str | Path | None = None) -> BuildToolRe
             return BuildToolResolution(None, False, env_name, checked, f"{env_name} is set but not executable: {configured}")
 
     executable_names = ["mvn.cmd", "mvn.bat", "mvn"] if os.name == "nt" else ["mvn"]
-    for home in DEFAULT_EXTERNAL_MAVEN_HOMES:
-        for executable in executable_names:
-            candidate = home / "bin" / executable
-            checked.append(str(candidate))
-            if candidate.exists():
-                return BuildToolResolution(str(candidate), True, "default_external_maven", checked, "default external Maven found")
-
-    external_parent = Path(r"D:\wn\mavenEvo")
-    if external_parent.exists():
-        for home in sorted(external_parent.glob("apache-maven-*"), reverse=True):
-            for executable in executable_names:
-                candidate = home / "bin" / executable
-                checked.append(str(candidate))
-                if candidate.exists():
-                    return BuildToolResolution(str(candidate), True, "default_external_maven_scan", checked, "default external Maven scan found")
-
     for env_name in ("MAVEN_HOME", "M2_HOME"):
         home = os.environ.get(env_name)
         if not home:
@@ -85,7 +64,7 @@ def resolve_maven_command(project_root: str | Path | None = None) -> BuildToolRe
         False,
         "not_found",
         checked,
-        "Maven executable was not found. Java evaluation cannot run JUnit/JaCoCo/PIT until Maven is available at D:\\wn\\mavenEvo\\apache-maven-3.9.1\\bin\\mvn.cmd or through mvnw, MAVEN_CMD/MVN_CMD, MAVEN_HOME/M2_HOME, project-local apache-maven, or PATH.",
+        "Maven executable was not found. Java evaluation cannot run JUnit/JaCoCo/PIT until Maven is available through mvnw, MAVEN_CMD/MVN_CMD, MAVEN_HOME/M2_HOME, a project-local apache-maven directory, or PATH.",
     )
 
 

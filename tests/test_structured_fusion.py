@@ -246,7 +246,7 @@ def test_maven_resolution_reports_missing_tool_without_fake_command(tmp_path, mo
     assert resolution.available is False
     assert resolution.command is None
     assert "Maven executable was not found" in resolution.message
-    assert any(r"D:\wn\mavenEvo\apache-maven-3.9.1" in item for item in resolution.checked)
+    assert any(item.startswith("PATH:") for item in resolution.checked)
 
 
 def test_maven_local_repo_stays_inside_project(tmp_path):

@@ -7,3 +7,4 @@ frontend/node_modules/
 java_workspace/.m2/
 java_workspace/target/
 .monitoring/
+*.egg-info/
