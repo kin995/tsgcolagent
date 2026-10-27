@@ -1,4 +1,5 @@
 from __future__ import annotations
+from core.tempdirs import temp_workspace
 
 import ast
 import os
@@ -305,7 +306,7 @@ class MutationRunner:
                 details.append(f"reused {status.value} mutation at line {line}")
             else:
                 status = None
-            with tempfile.TemporaryDirectory(prefix="stateflow_mut_") as temp:
+            with temp_workspace("stateflow_mut_") as temp:
                 if status is None:
                     temp_root = Path(temp)
                     mutant_source = temp_root / source_path.name

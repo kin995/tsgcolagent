@@ -7,6 +7,7 @@ import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 
+from core.tempdirs import temp_workspace
 from executor.coverage_runner import CoverageRunner
 from executor.mutation_runner import MutationRunner
 from executor.pytest_runner import PytestRunner
@@ -78,7 +79,7 @@ class PatchSearchRepair:
         except SyntaxError as exc:
             return PatchEvaluation(candidate, False, 0.0, 0.0, 0.0, 0.0, 0.0, False, f"syntax error: {exc}")
 
-        with tempfile.TemporaryDirectory(prefix="stateflow_patch_") as temp:
+        with temp_workspace("stateflow_patch_") as temp:
             temp_test = Path(temp) / test_path.name
             original = test_path.read_text(encoding="utf-8")
             if candidate.replace_file:

@@ -183,7 +183,7 @@ def measured_python_run(command, *, kind, **kwargs):
     module_root = str(Path(__file__).resolve().parent)
     env["PYTHONPATH"] = os.pathsep.join(filter(None, [module_root, env.get("PYTHONPATH")]))
     env["TSQCOL_TEST_EVENTS"] = str(path.resolve())
-    command = [*command, "-p", "pytest_counter"]
+    command = [*command, "-p", "metrics.pytest_counter"]
     measurement.append({"type": "execution_start", "call_id": call_id, "kind": kind})
     completed = None
     try:

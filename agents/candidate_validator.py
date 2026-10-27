@@ -5,6 +5,8 @@ import json
 import os
 import shutil
 import tempfile
+import uuid
+from contextlib import contextmanager
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -12,6 +14,23 @@ from typing import Any
 from executor.failure_classifier import FailureDiagnosis, PytestFailureClassifier
 from executor.pytest_runner import PytestRunner
 from executor.test_quality import analyze_test_usability
+
+
+@contextmanager
+def _candidate_tempdir():
+    """候选测试的临时目录。
+
+    优先用 STATEFLOW_TMP_DIR；不用 TemporaryDirectory，避免在受限环境里
+    创建 0700 目录后被拒绝访问。
+    """
+    base = os.environ.get("STATEFLOW_TMP_DIR") or tempfile.gettempdir()
+    Path(base).mkdir(parents=True, exist_ok=True)
+    path = Path(base) / f"stateflow_candidate_{uuid.uuid4().hex[:16]}"
+    path.mkdir()
+    try:
+        yield str(path)
+    finally:
+        shutil.rmtree(path, ignore_errors=True)
 
 
 @dataclass
@@ -58,7 +77,7 @@ class CandidateTestValidator:
         except SyntaxError as exc:
             return self._reject(candidate_code, "ast_compile", "syntax_error", str(exc), metadata)
 
-        with tempfile.TemporaryDirectory(prefix="stateflow_candidate_") as temp:
+        with _candidate_tempdir() as temp:
             temp_path = Path(temp) / final_path.name
             temp_path.write_text(candidate_code, encoding="utf-8")
             collect = self.pytest_runner.collect_only(temp_path, cwd=Path(cwd).resolve() if cwd else temp_path.parent)

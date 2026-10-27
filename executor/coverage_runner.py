@@ -1,4 +1,5 @@
 from __future__ import annotations
+from core.tempdirs import temp_workspace
 
 import json
 import os
@@ -51,7 +52,7 @@ class CoverageRunner:
         stdout_parts: list[str] = []
         stderr_parts: list[str] = []
         try:
-            with tempfile.TemporaryDirectory(prefix="stateflow_cov_") as temp:
+            with temp_workspace("stateflow_cov_") as temp:
                 temp_root = Path(temp)
                 data_path = temp_root / ".coverage"
                 json_path = temp_root / "coverage.json"
@@ -67,7 +68,7 @@ class CoverageRunner:
                         "--source",
                         str(source_path.parent),
                         "-m",
-                        "pytest",
+                        "executor.coverage_driver",
                         test_arg,
                         "-q",
                     ],
