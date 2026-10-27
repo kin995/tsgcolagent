@@ -11548,6 +11548,276 @@
       "prompt_reminders": [
         "Reason: no_gain_after_optimization. Cause: The test suite stayed runnable but the selected optimization did not close the main gap. Solution: Close this threshold gap with the smallest targeted test addition or assertion repair."
       ]
+    },
+    {
+      "timestamp": 1793062441.5734406,
+      "source": "<WORKSPACE>\\参赛材料\\demo_java\\src\\main\\java\\demo\\Calculator.java",
+      "model": "deepseek-chat",
+      "project_version": "pteg-agent-v3",
+      "prompt_version": "unknown",
+      "schema_version": "unknown",
+      "agent": "TestValidityAgent",
+      "dominant_gap": "coverage",
+      "gaps": {
+        "coverage": 1.0,
+        "mutation": 0.0,
+        "assertion": 0.0,
+        "exception": 0.0,
+        "runtime_type": 1.0
+      },
+      "task_features": {
+        "node_count": 8,
+        "function_count": 1,
+        "branch_count": 0,
+        "loop_count": 0,
+        "exception_count": 0,
+        "mutation_survivor_count": 0
+      },
+      "task_signature": {
+        "node_count": 8,
+        "function_count": 1,
+        "branch_count": 0,
+        "loop_count": 0,
+        "exception_count": 0,
+        "mutation_survivor_count": 0,
+        "language": "java",
+        "argument_types": [
+          "int"
+        ],
+        "operators": [],
+        "state_types": [
+          "Class",
+          "End",
+          "Function",
+          "Package",
+          "Parameter",
+          "Return",
+          "ReturnType"
+        ],
+        "target_terms": [
+          "add"
+        ],
+        "complexity": "low"
+      },
+      "before": {
+        "pytest_passed": false,
+        "coverage_percent": 0.0,
+        "line_coverage": 0.0,
+        "branch_coverage": null,
+        "combined_coverage": 0.0,
+        "mutation_score": null,
+        "sfc": 0.0,
+        "ae": 1.0,
+        "sfq": 0.4375,
+        "tsq": 0.4375,
+        "pv": 0.0,
+        "nrr": 1.0,
+        "test_path": "<REPO>\\tsgtest_runs\\Calculator_manual\\CalculatorTest.java",
+        "failure_category": "java_timeout",
+        "failed_tests": [
+          {
+            "test_name": "java_junit_execution",
+            "message": "java_timeout",
+            "failure_category": "java_timeout",
+            "command": [
+              "<WORKSPACE>\\参赛材料\\env\\maven\\apache-maven-3.9.16\\bin\\mvn.cmd",
+              "-q",
+              "-Dmaven.repo.local=<WORKSPACE>\\参赛材料\\demo_java\\workspace\\.m2\\repository",
+              "-s",
+              "<WORKSPACE>\\参赛材料\\demo_java\\workspace\\.m2\\settings.xml",
+              "-gs",
+              "<WORKSPACE>\\参赛材料\\demo_java\\workspace\\.m2\\settings.xml",
+              "-Dtest=CalculatorTest",
+              "test",
+              "jacoco:report"
+            ],
+            "staged_test_path": "<WORKSPACE>\\参赛材料\\demo_java\\workspace\\src\\test\\java\\demo\\CalculatorTest.java"
+          }
+        ],
+        "coverage_valid": false,
+        "mutation_valid": false,
+        "quality_status": "execution_invalid",
+        "next_allowed_agents": [
+          "TestValidityAgent"
+        ],
+        "collected_count": 0,
+        "timed_out": true,
+        "effective_mutants": 0,
+        "mutation_reliability": "unavailable",
+        "weak_assertions_only": false,
+        "exception_only": false,
+        "normal_behavior_tests": 0,
+        "assertion_count": 14,
+        "weak_assertions": 0,
+        "effective_assertions": 14,
+        "assertion_quality_explanation": "共 14 个断言，均为有效断言",
+        "sfc_components": {},
+        "timeout_kind": null,
+        "timeout_reason": null,
+        "timeout_likely_location": null,
+        "timeout_should_repair": true,
+        "weak_quality_flags": [
+          "coverage_unavailable",
+          "mutation_unavailable",
+          "weak_normal_behavior",
+          "weak_state_flow_coverage",
+          "weak_state_flow_quality"
+        ],
+        "threshold_failures": {
+          "sfc_gap": 0.65,
+          "sfq_gap": 0.2625
+        },
+        "failure_location": null,
+        "repair_failure_reason": null,
+        "evaluation_profile": "screening",
+        "mutation_complete": false,
+        "cache_hit": false,
+        "mutation_evidence": {
+          "valid": false,
+          "skipped": true,
+          "skipped_reason": "baseline_not_runnable",
+          "evaluation_profile": "screening",
+          "final_evaluation": false,
+          "score": null,
+          "mutation_score": null,
+          "effective_mutants": 0,
+          "score_reliability": "unavailable",
+          "evidence_source": "pit"
+        },
+        "quality_assessment": {
+          "status": "execution_invalid",
+          "feasible": false,
+          "objective": "first make the test compile, run, express normal behavior and contain effective assertions",
+          "dimensions": {},
+          "evidence_confidence": 0.0,
+          "rationale": [
+            "测试尚未形成可信的可执行结果"
+          ]
+        }
+      },
+      "after": {
+        "pytest_passed": false,
+        "coverage_percent": 0.0,
+        "line_coverage": 0.0,
+        "branch_coverage": null,
+        "combined_coverage": 0.0,
+        "mutation_score": null,
+        "sfc": 0.0,
+        "ae": 1.0,
+        "sfq": 0.4375,
+        "tsq": 0.4375,
+        "pv": 0.0,
+        "nrr": 1.0,
+        "test_path": "<REPO>\\tsgtest_runs\\Calculator_manual\\CalculatorTest.java",
+        "failure_category": "java_execution_failed",
+        "failed_tests": [
+          {
+            "test_name": "java_junit_execution",
+            "message": "ojosExecutionStrategy.execute(DefaultMojosExecutionStrategy.java:39)\n[ERROR] \tat org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:159)\n[ERROR] \tat org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:105)\n[ERROR] \tat org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:73)\n[ERROR] \tat org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:53)\n[ERROR] \tat org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:118)\n[ERROR] \tat org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:261)\n[ERROR] \tat org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:173)\n[ERROR] \tat org.apache.maven.DefaultMaven.execute(DefaultMaven.java:101)\n[ERROR] \tat org.apache.maven.cli.MavenCli.execute(MavenCli.java:919)\n[ERROR] \tat org.apache.maven.cli.MavenCli.doMain(MavenCli.java:285)\n[ERROR] \tat org.apache.maven.cli.MavenCli.main(MavenCli.java:207)\n[ERROR] \tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n[ERROR] \tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n[ERROR] \tat org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:255)\n[ERROR] \tat org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:201)\n[ERROR] \tat org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:362)\n[ERROR] \tat org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)\n[ERROR] \n[ERROR] -> [Help 1]\n[ERROR] \n[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.\n[ERROR] Re-run Maven using the -X switch to enable full debug logging.\n[ERROR] \n[ERROR] For more information about the errors and possible solutions, please read the following articles:\n[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException\n",
+            "failure_category": "java_execution_failed",
+            "command": [
+              "<WORKSPACE>\\参赛材料\\env\\maven\\apache-maven-3.9.16\\bin\\mvn.cmd",
+              "-q",
+              "-Dmaven.repo.local=<WORKSPACE>\\参赛材料\\demo_java\\workspace\\.m2\\repository",
+              "-s",
+              "<WORKSPACE>\\参赛材料\\demo_java\\workspace\\.m2\\settings.xml",
+              "-gs",
+              "<WORKSPACE>\\参赛材料\\demo_java\\workspace\\.m2\\settings.xml",
+              "-Dtest=CalculatorTest",
+              "test",
+              "jacoco:report"
+            ],
+            "staged_test_path": "<WORKSPACE>\\参赛材料\\demo_java\\workspace\\src\\test\\java\\demo\\CalculatorTest.java"
+          }
+        ],
+        "coverage_valid": false,
+        "mutation_valid": false,
+        "quality_status": "execution_invalid",
+        "next_allowed_agents": [
+          "TestValidityAgent"
+        ],
+        "collected_count": 0,
+        "timed_out": false,
+        "effective_mutants": 0,
+        "mutation_reliability": "unavailable",
+        "weak_assertions_only": false,
+        "exception_only": false,
+        "normal_behavior_tests": 0,
+        "assertion_count": 17,
+        "weak_assertions": 0,
+        "effective_assertions": 17,
+        "assertion_quality_explanation": "共 17 个断言，均为有效断言",
+        "sfc_components": {},
+        "timeout_kind": null,
+        "timeout_reason": null,
+        "timeout_likely_location": null,
+        "timeout_should_repair": true,
+        "weak_quality_flags": [
+          "coverage_unavailable",
+          "mutation_unavailable",
+          "weak_normal_behavior",
+          "weak_state_flow_coverage",
+          "weak_state_flow_quality"
+        ],
+        "threshold_failures": {
+          "sfc_gap": 0.65,
+          "sfq_gap": 0.2625
+        },
+        "failure_location": null,
+        "repair_failure_reason": null,
+        "evaluation_profile": "screening",
+        "mutation_complete": false,
+        "cache_hit": false,
+        "mutation_evidence": {
+          "valid": false,
+          "skipped": true,
+          "skipped_reason": "baseline_not_runnable",
+          "evaluation_profile": "screening",
+          "final_evaluation": false,
+          "score": null,
+          "mutation_score": null,
+          "effective_mutants": 0,
+          "score_reliability": "unavailable",
+          "evidence_source": "pit"
+        },
+        "quality_assessment": {
+          "status": "execution_invalid",
+          "feasible": false,
+          "objective": "first make the test compile, run, express normal behavior and contain effective assertions",
+          "dimensions": {},
+          "evidence_confidence": 0.0,
+          "rationale": [
+            "测试尚未形成可信的可执行结果"
+          ]
+        }
+      },
+      "delta_sfq": 0.0,
+      "runtime_seconds": 2.3391,
+      "llm_calls": 1,
+      "token_count": 3016,
+      "expected_reward": 0.0,
+      "actual_reward": 0.0,
+      "reward_prediction_error": 0.0,
+      "outcome": "no_gain",
+      "reward": 0.0,
+      "learning_notes": [
+        {
+          "lesson_type": "failure",
+          "reason_type": "java_execution_failed",
+          "cause": "The generated JUnit test did not compile or did not pass.",
+          "solution": "Repair the smallest failing JUnit method; keep class name SourceNameTest and package declaration aligned with the source.",
+          "reminder": "Reason: java_execution_failed. Cause: The generated JUnit test did not compile or did not pass. Solution: Repair the smallest failing JUnit method; keep class name SourceNameTest and package declaration aligned with the source.",
+          "evidence": {
+            "agent": "TestValidityAgent",
+            "dominant_gap": "coverage",
+            "failure_location": null,
+            "repair_failure_reason": null
+          }
+        }
+      ],
+      "prompt_reminders": [
+        "Reason: java_execution_failed. Cause: The generated JUnit test did not compile or did not pass. Solution: Repair the smallest failing JUnit method; keep class name SourceNameTest and package declaration aligned with the source."
+      ]
     }
   ]
 }
