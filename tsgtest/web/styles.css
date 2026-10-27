@@ -199,3 +199,5 @@ button:disabled { opacity: .55; cursor: not-allowed; }
 
 .demo-btn { width: 100%; margin-top: 8px; }
 
+/* hidden 属性优先，避免被 display:grid 覆盖 */
+[hidden] { display: none !important; }
