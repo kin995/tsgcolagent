@@ -268,12 +268,17 @@ class Handler(BaseHTTPRequestHandler):
         self._text(target.read_bytes(), content_type)
 
 
+class _Server(ThreadingHTTPServer):
+    # Windows 上默认的地址复用会让两个进程绑同一端口，导致请求随机命中旧实例。
+    allow_reuse_address = False
+
+
 def make_server(settings: Settings, manager: JobManager | None = None, host: str | None = None, port: int | None = None) -> ThreadingHTTPServer:
     handler = type("BoundHandler", (Handler,), {
         "manager": manager or JobManager(settings),
         "settings": settings,
     })
-    server = ThreadingHTTPServer((host or settings.host, settings.port if port is None else port), handler)
+    server = _Server((host or settings.host, settings.port if port is None else port), handler)
     return server
 
 

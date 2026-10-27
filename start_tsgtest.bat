@@ -1,6 +1,7 @@
 @echo off
 setlocal enabledelayedexpansion
 cd /d "%~dp0"
+if exist "%~dp0..\env\env_java.bat" call "%~dp0..\env\env_java.bat"
 
 rem Pick a Python >= 3.11: TSG_PYTHON > py -3.13/3.12/3.11 > python
 set "PY="
