@@ -183,7 +183,19 @@ def measured_python_run(command, *, kind, **kwargs):
     module_root = str(Path(__file__).resolve().parent)
     env["PYTHONPATH"] = os.pathsep.join(filter(None, [module_root, env.get("PYTHONPATH")]))
     env["TSQCOL_TEST_EVENTS"] = str(path.resolve())
-    command = [*command, "-p", "metrics.pytest_counter"]
+    command = list(command)
+    # 不依赖 PYTHONPATH：用引导脚本把 metrics/ 加进子进程 sys.path，
+    # 这样普通 Python 与绿色版 Python 下都能导入 pytest_counter。
+    if len(command) >= 3 and command[1:3] == ["-m", "pytest"]:
+        bootstrap = measurement.root / f"pytest_boot_{call_id}.py"
+        bootstrap.write_text(
+            "import runpy, sys\n"
+            f"sys.path.insert(0, {module_root!r})\n"
+            "runpy.run_module('pytest', run_name='__main__')\n",
+            encoding="utf-8",
+        )
+        command = [command[0], str(bootstrap), *command[3:]]
+    command = [*command, "-p", "pytest_counter"]
     measurement.append({"type": "execution_start", "call_id": call_id, "kind": kind})
     completed = None
     try:
