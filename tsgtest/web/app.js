@@ -38,7 +38,7 @@
       toggleApiKey();
       if (health.provider === "openai" && health.has_api_key === false) {
         setPill($("ollama-pill"), "API 已选 · 缺少 key", "warn");
-        $("ollama-pill").title = "把 key 写入 参赛材料/env/api_key.txt，或设置 DEEPSEEK_API_KEY";
+        $("ollama-pill").title = "把 key 写入 api_key.txt，或设置环境变量";
       }
     } catch (err) {
       setPill($("dep-pill"), "服务异常", "bad");
@@ -116,8 +116,8 @@
         $("base-url").value = "https://api.deepseek.com";
       }
       fillModels(["deepseek-chat", "deepseek-reasoner"], "deepseek-chat");
-      setPill($("ollama-pill"), "API 模式 · DeepSeek", "ok");
-      $("ollama-pill").title = "key 从 参赛材料/env/api_key.txt 或 DEEPSEEK_API_KEY 读取";
+      setPill($("ollama-pill"), "API 模式", "ok");
+      $("ollama-pill").title = "key 从环境变量或 api_key.txt 读取";
       return;
     }
     setPill($("ollama-pill"), "Ollama 检测中…", "");
