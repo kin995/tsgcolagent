@@ -49,6 +49,10 @@
           <button id="refresh-models" class="ghost" type="button">刷新</button>
         </div>
       </label>
+      <label class="field" id="api-key-field" hidden>
+        <span>API Key（可选）</span>
+        <input id="api-key" type="password" autocomplete="off" placeholder="留空则用 env/api_key.txt 或环境变量" />
+      </label>
       <details class="advanced">
         <summary>连接与参数</summary>
         <label class="field">

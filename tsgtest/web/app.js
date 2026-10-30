@@ -35,6 +35,7 @@
       $("base-url").value = health.ollama_base_url || "";
       state.root = health.root || "";
       if (health.provider) $("provider").value = health.provider;
+      toggleApiKey();
       if (health.provider === "openai" && health.has_api_key === false) {
         setPill($("ollama-pill"), "API 已选 · 缺少 key", "warn");
         $("ollama-pill").title = "把 key 写入 参赛材料/env/api_key.txt，或设置 DEEPSEEK_API_KEY";
@@ -45,6 +46,11 @@
     await loadModels();
     await loadHistory();
     await loadRuns();
+  }
+
+  function toggleApiKey() {
+    const field = $("api-key-field");
+    if (field) field.hidden = $("provider").value !== "openai";
   }
 
   function bind() {
@@ -60,6 +66,7 @@
       } else {
         $("base-url").value = "http://127.0.0.1:11434";
       }
+      toggleApiKey();
       loadModels();
     });
     $("browse-btn").addEventListener("click", () => openBrowse($("source").value.trim() || null));
@@ -151,6 +158,7 @@
         ollama_base_url: $("base-url").value.trim() || undefined,
         temperature: Number($("temperature").value),
         max_rounds: Number($("rounds").value),
+        api_key: $("provider").value === "openai" ? ($("api-key").value.trim() || undefined) : undefined,
       };
       const data = await fetchJSON("/api/jobs", {
         method: "POST",

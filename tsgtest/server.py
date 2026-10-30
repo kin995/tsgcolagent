@@ -152,6 +152,9 @@ class Handler(BaseHTTPRequestHandler):
             if provider not in {"ollama", "openai"}:
                 return self._error("provider 只支持 ollama 或 openai", HTTPStatus.BAD_REQUEST)
             overrides["provider"] = provider
+        api_key = str(payload.get("api_key") or "").strip()
+        if api_key:
+            overrides["api_key"] = api_key
         for key in ("model", "ollama_base_url"):
             value = payload.get(key)
             if isinstance(value, str) and value.strip():
