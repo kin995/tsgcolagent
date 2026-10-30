@@ -102,8 +102,29 @@ def resolve_model(settings: Settings) -> str:
     return model
 
 
+def openai_models(base_url: str, key: str, timeout: float = 8.0) -> tuple[list[str], str | None]:
+    url = base_url.rstrip("/") + "/models"
+    request = urllib.request.Request(url, headers={"Authorization": f"Bearer {key}"})
+    try:
+        with urllib.request.urlopen(request, timeout=timeout) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+    except (urllib.error.URLError, OSError, ValueError) as exc:
+        return [], f"无法读取模型列表：{exc}"
+    names = []
+    for item in payload.get("data", []) if isinstance(payload, dict) else []:
+        if isinstance(item, dict) and item.get("id"):
+            names.append(str(item["id"]))
+    return sorted(names), None
+
+
 def available_models(settings: Settings) -> tuple[list[str], str | None]:
     if settings.provider == "openai":
+        key = (settings.api_key or "").strip()
+        if key:
+            models, error = openai_models(resolve_base_url(settings), key)
+            if models:
+                return models, None
+            return ["deepseek-chat", "deepseek-reasoner"], error
         return ["deepseek-chat", "deepseek-reasoner"], None
     return ollama_models(settings.ollama_base_url)
 

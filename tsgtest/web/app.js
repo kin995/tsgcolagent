@@ -60,6 +60,7 @@
     $("export-md").addEventListener("click", () => exportReport("markdown"));
     $("export-html").addEventListener("click", () => exportReport("html"));
     $("refresh-models").addEventListener("click", loadModels);
+    $("api-key").addEventListener("blur", loadModels);
     $("provider").addEventListener("change", () => {
       if ($("provider").value === "openai") {
         $("base-url").value = "https://api.deepseek.com";
@@ -115,9 +116,21 @@
       if (!$("base-url").value.trim() || $("base-url").value.includes("11434")) {
         $("base-url").value = "https://api.deepseek.com";
       }
-      fillModels(["deepseek-chat", "deepseek-reasoner"], "deepseek-chat");
       setPill($("ollama-pill"), "API 模式", "ok");
       $("ollama-pill").title = "key 从环境变量或 api_key.txt 读取";
+      const params = new URLSearchParams({ provider: "openai", base_url: $("base-url").value.trim() });
+      const key = $("api-key").value.trim();
+      if (key) params.set("api_key", key);
+      try {
+        const data = await fetchJSON("/api/models?" + params.toString());
+        if (data.models && data.models.length > 0) {
+          fillModels(data.models, data.models.includes("deepseek-chat") ? "deepseek-chat" : data.models[0]);
+        } else {
+          fillModels(["deepseek-chat", "deepseek-reasoner"], "deepseek-chat");
+        }
+      } catch (err) {
+        fillModels(["deepseek-chat", "deepseek-reasoner"], "deepseek-chat");
+      }
       return;
     }
     setPill($("ollama-pill"), "Ollama 检测中…", "");

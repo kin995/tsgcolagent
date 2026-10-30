@@ -112,8 +112,17 @@ class Handler(BaseHTTPRequestHandler):
 
     def _models(self, query: dict[str, list[str]]) -> None:
         base_url = (query.get("base_url") or [self.settings.ollama_base_url])[0]
-        models, error = available_models(self.settings)
-        self._json({"models": models, "error": error, "base_url": base_url, "provider": self.settings.provider})
+        local = type(self.settings)(**{**self.settings.__dict__})
+        provider = (query.get("provider") or [local.provider])[0]
+        if provider in {"ollama", "openai"}:
+            local.provider = provider
+        if base_url:
+            local.ollama_base_url = base_url
+        api_key = (query.get("api_key") or [""])[0].strip()
+        if api_key:
+            local.api_key = api_key
+        models, error = available_models(local)
+        self._json({"models": models, "error": error, "base_url": base_url, "provider": local.provider})
 
     def _browse(self, query: dict[str, list[str]]) -> None:
         raw = (query.get("path") or [""])[0]
